@@ -1,31 +1,15 @@
 package com.kodilla.ecommercee.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-
-@Entity
-@Table(name="PRODUCTS")
 public class Product {
+//Mock class
 
-    @Id
-    @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="name")
-    @NotNull
     private String name;
 
-    @Column(name="details")
     private String details;
 
-    @Column(name="price")
-    @NotNull
     private double price;
-
-    public Product() {
-    }
 
     public Product(String name, String details, double price) {
         this.name = name;
