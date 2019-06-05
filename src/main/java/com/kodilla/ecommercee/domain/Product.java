@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
 public class Product {
-//Mock class
+//Mock product class
 
     private Long id;
 

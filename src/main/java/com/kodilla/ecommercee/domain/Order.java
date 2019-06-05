@@ -16,15 +16,11 @@ public class Order {
     private Long order_id;
 
     @NotNull
-    @Column(name = "order_name")
-    private String order_name;
-
-    @NotNull
     @Column(name = "order_price")
     private Double order_price;
 
     @NotNull
-    @Column(name = "order_quantity")
+    @Column(name = "products_quantity")
     private Integer order_quantity;
 
     @Column(name = "dateOfOrder")
@@ -34,24 +30,15 @@ public class Order {
     @Column(name = "products")
     private List<Product> products = new ArrayList<>();
 
+    @NotNull
+    @Column(name = "users")
+    private List<Users> users = new ArrayList<>();
 
     public Order() {
     }
 
-    public Order(String order_name, Double order_price, Integer order_quantity, LocalDate dateOfOrder, List<Product> products) {
-        this.order_name = order_name;
-        this.order_price = products.get(order_quantity).getPrice();
-        this.order_quantity = products.size();
-        this.dateOfOrder = dateOfOrder;
-        this.products = products;
-    }
-
     public Long getOrder_id() {
         return order_id;
-    }
-
-    public String getOrder_name() {
-        return order_name;
     }
 
     public Double getOrder_price() {
@@ -68,5 +55,33 @@ public class Order {
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    public List<Users> getUsers() {
+        return users;
+    }
+
+    public void setOrder_id(Long order_id) {
+        this.order_id = order_id;
+    }
+
+    public void setOrder_price(Double order_price) {
+        this.order_price = order_price;
+    }
+
+    public void setOrder_quantity(Integer order_quantity) {
+        this.order_quantity = order_quantity;
+    }
+
+    public void setDateOfOrder(LocalDate dateOfOrder) {
+        this.dateOfOrder = dateOfOrder;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void setUsers(List<Users> users) {
+        this.users = users;
     }
 }
