@@ -36,6 +36,15 @@ public class Users {
     }
 
     public Users(@NotNull Long id, @NotNull String name, @NotNull String surname, @NotNull String eMailAddress, @NotNull String userAddress, LocalDate accountStartDate) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.eMailAddress = eMailAddress;
+        this.userAddress = userAddress;
+        this.accountStartDate = accountStartDate;
+    }
+
+    public Users( @NotNull String name, @NotNull String surname, @NotNull String eMailAddress, @NotNull String userAddress, LocalDate accountStartDate) {
         this.name = name;
         this.surname = surname;
         this.eMailAddress = eMailAddress;
