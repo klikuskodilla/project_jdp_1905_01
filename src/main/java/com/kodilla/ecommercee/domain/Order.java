@@ -26,12 +26,8 @@ public class Order {
     @Column(name = "dateOfOrder")
     private LocalDate dateOfOrder;
 
-    @NotNull
-    @Column(name = "products")
     private List<Product> products = new ArrayList<>();
 
-    @NotNull
-    @Column(name = "users")
     private List<Users> users = new ArrayList<>();
 
     public Order() {
