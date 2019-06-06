@@ -1,28 +1,47 @@
 package com.kodilla.ecommercee.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "USERS")
 public class Users {
-//Mock users class
 
+    @Id
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
+    @Column(name = "name")
     private String name;
 
+    @NotNull
+    @Column(name = "surname")
     private String surname;
 
+    @NotNull
+    @Column(name = "eMailAddress")
     private String eMailAddress;
 
+    @NotNull
+    @Column(name = "userAddress")
     private String userAddress;
 
+    @Column(name = "account_start_date")
     private LocalDate accountStartDate;
+
+    @ManyToOne
+    @JoinColumn(name = "ORDERS_ID")
+    private Order order;
 
     public Users() {
     }
 
-    public Users(Long id, String name, String surname, String eMailAddress, String userAddress, LocalDate accountStartDate) {
+    public Users(@NotNull Long id, @NotNull String name, @NotNull String surname, @NotNull String eMailAddress, @NotNull String userAddress, LocalDate accountStartDate) {
         this.name = name;
         this.surname = surname;
         this.eMailAddress = eMailAddress;
@@ -53,5 +72,13 @@ public class Users {
     public LocalDate getAccountStartDate() {
         return accountStartDate;
     }
-}
 
+
+    public Order getOrders() {
+        return order;
+    }
+
+    public void setOrders(Order orders) {
+        this.order = orders;
+    }
+}

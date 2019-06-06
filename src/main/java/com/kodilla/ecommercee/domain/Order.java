@@ -13,52 +13,48 @@ public class Order {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long order_id;
 
-    @Column(name = "price")
     @NotNull
+    @Column(name = "order_price")
     private Double order_price;
 
-    @Column(name = "quantity")
     @NotNull
+    @Column(name = "products_quantity")
     private Integer order_quantity;
 
     @Column(name = "dateOfOrder")
     private LocalDate dateOfOrder;
 
+    @OneToMany(
+            targetEntity = Product.class,
+            mappedBy = "orders",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     private List<Product> products = new ArrayList<>();
 
+    @OneToMany(
+            targetEntity = Users.class,
+            mappedBy = "orders",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     private List<Users> users = new ArrayList<>();
 
     public Order() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Double getOrder_price() {
-        return products.get(order_quantity).getPrice();
-    }
-
-    public Integer getOrder_quantity() {
-        return products.size();
+    public Long getOrder_id() {
+        return order_id;
     }
 
     public LocalDate getDateOfOrder() {
         return dateOfOrder;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public List<Users> getUsers() {
-        return users;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setOrder_id(Long order_id) {
+        this.order_id = order_id;
     }
 
     public void setOrder_price(Double order_price) {
@@ -73,11 +69,5 @@ public class Order {
         this.dateOfOrder = dateOfOrder;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 
-    public void setUsers(List<Users> users) {
-        this.users = users;
-    }
 }

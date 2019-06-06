@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.repositoryDao;
 
 import com.kodilla.ecommercee.domain.Order;
+
 import org.aspectj.weaver.ast.Or;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,7 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
     List<Order> findAll();
 
     @Override
-    Order save(Order order);
+    Order save(Order orders);
 
     @Override
     Optional<Order> findById(Long id);
