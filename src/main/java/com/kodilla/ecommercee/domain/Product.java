@@ -2,6 +2,8 @@ package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -24,9 +26,8 @@ public class Product {
     @NotNull
     private double price;
 
-    @ManyToOne
-    @JoinColumn(name = "ORDERS_ID")
-    private Order orders;
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orders = new ArrayList<>();
 
     public Product() {
     }
@@ -51,13 +52,5 @@ public class Product {
 
     public double getPrice() {
         return price;
-    }
-
-    public Order getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Order orders) {
-        this.orders = orders;
     }
 }

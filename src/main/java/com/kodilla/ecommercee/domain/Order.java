@@ -26,21 +26,17 @@ public class Order {
     @Column(name = "dateOfOrder")
     private LocalDate dateOfOrder;
 
-    @OneToMany(
-            targetEntity = Product.class,
-            mappedBy = "orders",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "JOIN_PRODUCT_ORDER",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "id")}
     )
     private List<Product> products = new ArrayList<>();
 
-    @OneToMany(
-            targetEntity = Users.class,
-            mappedBy = "orders",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Users> users = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "USERS_ID")
+    private Users users;
 
     public Order() {
     }
@@ -51,6 +47,10 @@ public class Order {
 
     public LocalDate getDateOfOrder() {
         return dateOfOrder;
+    }
+
+    public Users getUsers() {
+        return users;
     }
 
     public void setOrder_id(Long order_id) {
@@ -69,5 +69,7 @@ public class Order {
         this.dateOfOrder = dateOfOrder;
     }
 
-
+    public void setUsers(Users users) {
+        this.users = users;
+    }
 }

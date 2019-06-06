@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS")
@@ -34,9 +36,13 @@ public class Users {
     @Column(name = "account_start_date")
     private LocalDate accountStartDate;
 
-    @ManyToOne
-    @JoinColumn(name = "ORDERS_ID")
-    private Order order;
+    @OneToMany(
+            targetEntity = Order.class,
+            mappedBy = "users",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Order> orders = new ArrayList<>();
 
     public Users() {
     }
@@ -71,14 +77,5 @@ public class Users {
 
     public LocalDate getAccountStartDate() {
         return accountStartDate;
-    }
-
-
-    public Order getOrders() {
-        return order;
-    }
-
-    public void setOrders(Order orders) {
-        this.order = orders;
     }
 }
