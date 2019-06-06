@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+/*package com.kodilla.ecommercee;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,3 +29,4 @@ public class SpringBootJPAIntegrationTest {
         assertEquals(genericEntity.getValue(), foundEntity.get().getValue());
     }
 }
+*/
