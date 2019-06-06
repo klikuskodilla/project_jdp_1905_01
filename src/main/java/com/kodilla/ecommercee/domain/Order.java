@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "ORDERS1")
+@Table(name = "ORDERS")
 public class Order {
 
     @Id
@@ -28,7 +28,7 @@ public class Order {
 
     @OneToMany(
             targetEntity = Product.class,
-            mappedBy = "orders1",
+            mappedBy = "orders",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
@@ -36,7 +36,7 @@ public class Order {
 
     @OneToMany(
             targetEntity = Users.class,
-            mappedBy = "orders1",
+            mappedBy = "orders",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
