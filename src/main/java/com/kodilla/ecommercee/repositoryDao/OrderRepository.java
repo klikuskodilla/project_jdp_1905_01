@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface OrderDao extends CrudRepository<Order, Long> {
+public interface OrderRepository extends CrudRepository<Order, Long> {
     @Override
     List<Order> findAll();
 
@@ -24,5 +24,4 @@ public interface OrderDao extends CrudRepository<Order, Long> {
 
     @Override
     void deleteById(Long id);
-
 }

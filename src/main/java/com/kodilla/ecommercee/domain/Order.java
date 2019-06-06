@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "ORDERS")
 public class Order {
 
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long order_id;
+    private Long id;
 
+    @Column(name = "price")
     @NotNull
-    @Column(name = "order_price")
     private Double order_price;
 
+    @Column(name = "quantity")
     @NotNull
-    @Column(name = "products_quantity")
     private Integer order_quantity;
 
     @Column(name = "dateOfOrder")
@@ -33,8 +33,8 @@ public class Order {
     public Order() {
     }
 
-    public Long getOrder_id() {
-        return order_id;
+    public Long getId() {
+        return id;
     }
 
     public Double getOrder_price() {
@@ -57,8 +57,8 @@ public class Order {
         return users;
     }
 
-    public void setOrder_id(Long order_id) {
-        this.order_id = order_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setOrder_price(Double order_price) {
