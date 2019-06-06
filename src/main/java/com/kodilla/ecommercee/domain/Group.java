@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="GROUPS")
+@Table(name="GROUPS_OF_PRODUCTS")
 public class Group {
 
     @Id
