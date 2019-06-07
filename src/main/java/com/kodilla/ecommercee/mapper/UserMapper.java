@@ -34,7 +34,7 @@ public class UserMapper {
 
     public List<UsersDto> mapToUserDtoList(final List<Users> userList) {
         return userList.stream()
-                .map(t -> new UsersDto(t.getId(), t.getName(), t.getSurname(),t.geteMailAddress(),t.getUserAddress(), t.getAccountStartDate()))
+                .map(t -> maptoUserDto(t))
                 .collect(Collectors.toList());
     }
 }
