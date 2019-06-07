@@ -24,6 +24,10 @@ public class Product {
     @NotNull
     private double price;
 
+    @ManyToOne
+    @JoinColumn(name="GROUP_ID")
+    private Group group;
+
     public Product() {
     }
 
@@ -47,5 +51,9 @@ public class Product {
 
     public double getPrice() {
         return price;
+    }
+
+    public Group getGroup() {
+        return group;
     }
 }
