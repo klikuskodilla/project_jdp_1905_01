@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.com.kodilla.ecommercee.domain.Dto;
+package com.kodilla.ecommercee.domain.Dto;
 
 import java.time.LocalDate;
 

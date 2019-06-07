@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.com.kodilla.ecommercee.domain;
+package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

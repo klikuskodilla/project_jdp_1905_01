@@ -1,8 +1,8 @@
 package com.kodilla.ecommercee.mapper;
 
 
-import com.kodilla.ecommercee.com.kodilla.ecommercee.domain.Dto.UsersDto;
-import com.kodilla.ecommercee.com.kodilla.ecommercee.domain.Users;
+import com.kodilla.ecommercee.domain.Dto.UsersDto;
+import com.kodilla.ecommercee.domain.Users;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

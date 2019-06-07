@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.repositoryDao;
 
-import com.kodilla.ecommercee.com.kodilla.ecommercee.domain.Users;
+import com.kodilla.ecommercee.domain.Users;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
