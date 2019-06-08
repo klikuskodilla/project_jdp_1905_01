@@ -13,15 +13,15 @@ public class Order {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long order_id;
+    private Long orderId;
 
     @NotNull
     @Column(name = "order_price")
-    private Double order_price;
+    private Double orderPrice;
 
     @NotNull
     @Column(name = "products_quantity")
-    private Integer order_quantity;
+    private Integer productsQuantity;
 
     @Column(name = "dateOfOrder")
     private LocalDate dateOfOrder;
@@ -41,28 +41,28 @@ public class Order {
     public Order() {
     }
 
-    public Long getOrder_id() {
-        return order_id;
+    public Long getOrderId() {
+        return orderId;
     }
 
     public LocalDate getDateOfOrder() {
         return dateOfOrder;
     }
 
-    /*public Users getUsers() {
+  /*public Users getUsers() {
         return users;
     }*/
 
-    public void setOrder_id(Long order_id) {
-        this.order_id = order_id;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public void setOrder_price(Double order_price) {
-        this.order_price = order_price;
+    public void setOrderPrice(Double orderPrice) {
+        this.orderPrice = orderPrice;
     }
 
-    public void setOrder_quantity(Integer order_quantity) {
-        this.order_quantity = order_quantity;
+    public void setProductsQuantity(Integer productsQuantity) {
+        this.productsQuantity = productsQuantity;
     }
 
     public void setDateOfOrder(LocalDate dateOfOrder) {
