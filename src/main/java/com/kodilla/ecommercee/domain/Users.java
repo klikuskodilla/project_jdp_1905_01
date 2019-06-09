@@ -32,6 +32,16 @@ public class Users {
     @Column(name = "account_start_date")
     private LocalDate accountStartDate;
 
+    /*
+    @OneToMany(
+            targetEntity = Order.class,
+            mappedBy = "users",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Order> orders = new ArrayList<>();
+*/
+
     public Users() {
     }
 
