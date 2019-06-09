@@ -42,6 +42,16 @@ public class Users {
     private List<Order> orders = new ArrayList<>();
 */
 
+        /*
+    @OneToMany(
+            targetEntity = Cart.class,
+            mappedBy = "users",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Cart> orders = new ArrayList<>();
+*/
+
     public Users() {
     }
 
