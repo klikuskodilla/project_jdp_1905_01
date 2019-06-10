@@ -25,10 +25,13 @@ public class Product {
     @Column(name="price")
     @NotNull
     private double price;
-
+  
     @ManyToMany(mappedBy = "products")
     private List<Order> orders = new ArrayList<>();
-
+  
+    @ManyToOne
+    @JoinColumn(name="GROUP_ID")
+    private Group group;
     public Product() {
     }
 
@@ -52,5 +55,10 @@ public class Product {
 
     public double getPrice() {
         return price;
+    }
+}
+
+    public Group getGroup() {
+        return group;
     }
 }
