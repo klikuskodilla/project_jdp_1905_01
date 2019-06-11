@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.repositoryDao;
 
 import com.kodilla.ecommercee.domain.Group;
+import com.kodilla.ecommercee.domain.Product;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,10 +45,9 @@ public class GroupRepositoryTestSuit {
             groupRepository.deleteById(id3);
             groupRepository.deleteById(id4);
         }catch(Exception e){
-            System.out.println("Clean-up process filed.");
+            System.out.println("Clean-up process failed.");
         }
     }
-
 
     @Test
     public void testGroupDaoSaveAndFindById(){
@@ -65,17 +65,43 @@ public class GroupRepositoryTestSuit {
         groupRepository.save(group4);
         Long id4= group4.getGroupId();
         //WHEN
-        Optional<Group> groupFound = groupRepository.findById(id1);
+        Optional<Group> groupFound = groupRepository.findById(id4);
         //THEN
-        Assert.assertNotEquals(group1, groupFound);
+        Assert.assertNotEquals(group4, groupFound);
+        //CLEAN-UP
         try {
             groupRepository.deleteById(id1);
             groupRepository.deleteById(id2);
             groupRepository.deleteById(id3);
             groupRepository.deleteById(id4);
         }catch(Exception e){
-            System.out.println("Clean-up process filed.");
+            System.out.println("Clean-up process failed.");
         }
+    }
+
+    @Test
+    public void testGroupDaoSaveWithProducts(){
+        //GIVEN
+        Product product1 = new Product("kurtka zimowa", "woodoporna", 100 );
+        Product product2 = new Product("płaszcz", "damski, wełna", 150);
+        Group group = new Group("Ubrania");
+        group.getProductList().add(product1);
+        group.getProductList().add(product2);
+        product1.setGroup(group);
+        product2.setGroup(group);
+        //WHEN
+        groupRepository.save(group);
+        Long id = group.getGroupId();
+        Long nullId = 0L;
+        //THEN
+        Assert.assertNotEquals(nullId, id);
+        //CLEAN-UP
+        try {
+            groupRepository.deleteById(id);
+        }catch(Exception e){
+            System.out.println("Clean-up process failed.");
+        }
+
     }
 
 }
