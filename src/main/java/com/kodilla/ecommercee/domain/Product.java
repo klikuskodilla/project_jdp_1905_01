@@ -2,6 +2,8 @@ package com.kodilla.ecommercee.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -23,11 +25,13 @@ public class Product {
     @Column(name="price")
     @NotNull
     private double price;
-
+  
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orders = new ArrayList<>();
+  
     @ManyToOne
     @JoinColumn(name="GROUP_ID")
     private Group group;
-
     public Product() {
     }
 
