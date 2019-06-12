@@ -137,6 +137,15 @@ public class UserRepositoryTestSuit {
         assertNotEquals(0.0, orderId2);
         assertNotEquals(0.0, orderId3);
 
+        //CleanUp
+        try {
+            userDao.deleteById(orderId1);
+            userDao.deleteById(orderId2);
+            userDao.deleteById(orderId3);
+        } catch (Exception e) {
+           //do nothing
+        }
+
     }
 
 }
