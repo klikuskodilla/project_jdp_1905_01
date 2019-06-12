@@ -17,7 +17,7 @@ public class Cart {
     @Column(name="CART_ID", unique = true)
     private Long id;
 
-    @OneToOne(targetEntity = Group.class, mappedBy="cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name ="ORDER_ID")
     private Order order;
 
@@ -29,7 +29,7 @@ public class Cart {
     @JoinTable(
             name = "JOIN_PRODUCT_CART",
             joinColumns = {@JoinColumn(name = "CART_ID",referencedColumnName = "CART_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID",referencedColumnName = "PRODUCT_ID")})
+            inverseJoinColumns = {@JoinColumn(name = "ID",referencedColumnName = "ID")})
     private List<Product> productsList = new ArrayList<>();
 
 

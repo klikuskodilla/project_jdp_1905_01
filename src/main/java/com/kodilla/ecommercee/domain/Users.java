@@ -44,7 +44,7 @@ public class Users {
 
     @OneToMany(
             targetEntity = Cart.class,
-            mappedBy = "users",
+            mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
@@ -84,5 +84,13 @@ public class Users {
     public LocalDate getAccountStartDate() {
         return accountStartDate;
     }
+
+    public List<Cart> getOrdersInsideTheCart(){
+        return ordersInsideTheCart;
+    }
+    public void setOrdersInsideTheCart(Cart cart){
+        ordersInsideTheCart.add(cart);
+    }
+
 }
 

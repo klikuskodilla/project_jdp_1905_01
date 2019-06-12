@@ -50,6 +50,13 @@ public class Product {
         return id;
     }
 
+    public List<Cart> getListOfCarts(){
+        return listOfCarts;
+    }
+    public void sertListofCart(Cart cart){
+         listOfCarts.add(cart);
+    }
+
     public String getName() {
         return name;
     }
