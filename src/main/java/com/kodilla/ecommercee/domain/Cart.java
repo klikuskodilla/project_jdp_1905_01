@@ -14,14 +14,24 @@ public class Cart {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="ID", unique = true)
+    @Column(name="CART_ID", unique = true)
     private Long id;
 
-    @Column(name="USER")
-    private User user;
+    @OneToOne(targetEntity = Group.class, mappedBy="cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name ="ORDER_ID")
+    private Order order;
 
-    @Column(name="LIST_OF_PRODUCTS")
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private Users user;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "JOIN_PRODUCT_CART",
+            joinColumns = {@JoinColumn(name = "CART_ID",referencedColumnName = "CART_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID",referencedColumnName = "PRODUCT_ID")})
     private List<Product> productsList = new ArrayList<>();
+
 
     public Cart(){
 
@@ -34,10 +44,14 @@ public class Cart {
         this.id = id;
     }
 
-    public User getUser() {
+    public Order getOrder() {
+        return order;
+    }
+
+    public Users getUser() {
         return user;
     }
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
     public List<Product> getProductsList(){
@@ -46,9 +60,6 @@ public class Cart {
     public void setProductsList(List<Product> productsList) {
         this.productsList = productsList;
     }
-
-
-
 }
 
 

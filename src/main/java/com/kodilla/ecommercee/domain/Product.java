@@ -35,6 +35,11 @@ public class Product {
     public Product() {
     }
 
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CART_ID")
+    private List<Cart> listOfCarts = new ArrayList<>();
+
     public Product(String name, String details, double price) {
         this.name = name;
         this.details = details;
