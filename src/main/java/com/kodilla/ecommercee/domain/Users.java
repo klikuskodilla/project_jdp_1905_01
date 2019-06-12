@@ -3,6 +3,8 @@ package com.kodilla.ecommercee.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS")
@@ -32,7 +34,7 @@ public class Users {
     @Column(name = "account_start_date")
     private LocalDate accountStartDate;
 
-    /*
+
     @OneToMany(
             targetEntity = Order.class,
             mappedBy = "users",
@@ -40,9 +42,8 @@ public class Users {
             fetch = FetchType.LAZY
     )
     private List<Order> orders = new ArrayList<>();
-*/
 
-        /*
+    /*
     @OneToMany(
             targetEntity = Cart.class,
             mappedBy = "users",
@@ -56,6 +57,15 @@ public class Users {
     }
 
     public Users(@NotNull Long id, @NotNull String name, @NotNull String surname, @NotNull String eMailAddress, @NotNull String userAddress, LocalDate accountStartDate) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.eMailAddress = eMailAddress;
+        this.userAddress = userAddress;
+        this.accountStartDate = accountStartDate;
+    }
+
+    public Users(@NotNull String name, @NotNull String surname, @NotNull String eMailAddress, @NotNull String userAddress, LocalDate accountStartDate) {
         this.name = name;
         this.surname = surname;
         this.eMailAddress = eMailAddress;
@@ -85,6 +95,14 @@ public class Users {
 
     public LocalDate getAccountStartDate() {
         return accountStartDate;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
 

@@ -34,9 +34,15 @@ public class Order {
     )
     private List<Product> products = new ArrayList<>();
 
-    /*@ManyToOne
+    public Order(@NotNull Double orderPrice, @NotNull Integer productsQuantity, LocalDate dateOfOrder) {
+        this.orderPrice = orderPrice;
+        this.productsQuantity = productsQuantity;
+        this.dateOfOrder = dateOfOrder;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "USERS_ID")
-    private Users users;*/
+    private Users users;
 
     public Order() {
     }
@@ -49,9 +55,9 @@ public class Order {
         return dateOfOrder;
     }
 
-  /*public Users getUsers() {
+  public Users getUsers() {
         return users;
-    }*/
+    }
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
@@ -69,7 +75,7 @@ public class Order {
         this.dateOfOrder = dateOfOrder;
     }
 
-    /*public void setUsers(Users users) {
+    public void setUsers(Users users) {
         this.users = users;
-    }*/
+    }
 }
