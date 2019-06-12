@@ -18,34 +18,32 @@ public class GroupRepositoryTestSuit {
 
     @Autowired
     private GroupRepository groupRepository;
-    @Autowired
-    private ProductRepository productRepository;
+
+    private Group group1 = new Group("Ubrania");
+    private Group group2 = new Group("Dodatki");
+    private Group group3 = new Group("Biżuteria");
+    private Group group4 = new Group("Obuwie");
+
+    private Product product1 = new Product("kurtka zimowa", "woodoporna", 100 );
+    private Product product2 = new Product("płaszcz", "damski, wełna", 150);
 
     @Test
     public void testGroupDaoSaveAndFindAll(){
         //GIVEN
-        Group group1 = new Group("Ubrania");
-        Group group2 = new Group("Dodatki");
-        Group group3 = new Group("Biżuteria");
-        Group group4 = new Group("Obuwie");
         groupRepository.save(group1);
-        Long id1= group1.getGroupId();
         groupRepository.save(group2);
-        Long id2= group2.getGroupId();
         groupRepository.save(group3);
-        Long id3= group3.getGroupId();
         groupRepository.save(group4);
-        Long id4= group4.getGroupId();
         //WHEN
         List<Group> listOfGroups = groupRepository.findAll();
         //THEN
         Assert.assertEquals(4, listOfGroups.size());
         //CLEAN-UP
         try {
-            groupRepository.deleteById(id1);
-            groupRepository.deleteById(id2);
-            groupRepository.deleteById(id3);
-            groupRepository.deleteById(id4);
+            groupRepository.deleteById(group1.getGroupId());
+            groupRepository.deleteById(group2.getGroupId());
+            groupRepository.deleteById(group3.getGroupId());
+            groupRepository.deleteById(group4.getGroupId());
         }catch(Exception e){
             System.out.println("Clean-up process failed.");
         }
@@ -54,76 +52,46 @@ public class GroupRepositoryTestSuit {
     @Test
     public void testGroupDaoSaveAndFindById(){
         //GIVEN
-        Group group1 = new Group("Ubrania");
-        Group group2 = new Group("Dodatki");
-        Group group3 = new Group("Biżuteria");
-        Group group4 = new Group("Obuwie");
         groupRepository.save(group1);
-        Long id1= group1.getGroupId();
         groupRepository.save(group2);
-        Long id2= group2.getGroupId();
         groupRepository.save(group3);
-        Long id3= group3.getGroupId();
         groupRepository.save(group4);
-        Long id4= group4.getGroupId();
+        Long group4Id = group4.getGroupId();
         //WHEN
-        Optional<Group> groupFound = groupRepository.findById(id4);
+        Optional<Group> groupFound = groupRepository.findById(group4Id);
         //THEN
         Assert.assertNotEquals(group4, groupFound);
         //CLEAN-UP
         try {
-            groupRepository.deleteById(id1);
-            groupRepository.deleteById(id2);
-            groupRepository.deleteById(id3);
-            groupRepository.deleteById(id4);
+            groupRepository.deleteById(group1.getGroupId());
+            groupRepository.deleteById(group2.getGroupId());
+            groupRepository.deleteById(group3.getGroupId());
+            groupRepository.deleteById(group4.getGroupId());
         }catch(Exception e){
             System.out.println("Clean-up process failed.");
         }
-    }
-
-    @Test
-    public void testGroupDaoSaveWithProducts(){
-        //GIVEN
-        Product product1 = new Product("kurtka zimowa", "woodoporna", 100 );
-        Product product2 = new Product("płaszcz", "damski, wełna", 150);
-        Group group = new Group("Ubrania");
-        group.getProductList().add(product1);
-        group.getProductList().add(product2);
-        product1.setGroup(group);
-        product2.setGroup(group);
-        //WHEN
-        groupRepository.save(group);
-        Long id = group.getGroupId();
-        Long nullId = 0L;
-        //THEN
-        Assert.assertNotEquals(nullId, id);
-        //CLEAN-UP
-        try {
-            groupRepository.deleteById(id);
-        }catch(Exception e){
-            System.out.println("Clean-up process failed.");
-        }
-
     }
 
     @Test
     public void testGroupDaoOneToManyWithProduct(){
         //GIVEN
-        Product product1 = new Product("kurtka zimowa", "woodoporna", 100 );
-        Product product2 = new Product("płaszcz", "damski, wełna", 150);
-        Group group = new Group("Ubrania");
-        group.getProductList().add(product1);
-        group.getProductList().add(product2);
-        product1.setGroup(group);
-        product2.setGroup(group);
+        group1.getProductList().add(product1);
+        group1.getProductList().add(product2);
+        product1.setGroup(group1);
+        product2.setGroup(group1);
         //WHEN
-        groupRepository.save(group);
-        Long id = group.getGroupId();
+        groupRepository.save(group1);
+        Long groupId = group1.getGroupId();
+        Long productId1 = product1.getId();
+        Long productId2 = product2.getId();
+
         //THEN
-        Assert.assertTrue(group.getProductList().size()>1);
+        Assert.assertNotEquals(0.0, groupId);
+        Assert.assertNotEquals(0.0, productId1);
+        Assert.assertNotEquals(0.0, productId2);
         //CLEAN-UP
         try {
-            groupRepository.deleteById(id);
+            groupRepository.deleteById(groupId);
         }catch(Exception e){
             System.out.println("Clean-up process failed.");
         }
