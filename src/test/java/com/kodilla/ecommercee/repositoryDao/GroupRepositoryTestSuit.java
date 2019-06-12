@@ -18,6 +18,8 @@ public class GroupRepositoryTestSuit {
 
     @Autowired
     private GroupRepository groupRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     @Test
     public void testGroupDaoSaveAndFindAll(){
@@ -102,6 +104,29 @@ public class GroupRepositoryTestSuit {
             System.out.println("Clean-up process failed.");
         }
 
+    }
+
+    @Test
+    public void testGroupDaoOneToManyWithProduct(){
+        //GIVEN
+        Product product1 = new Product("kurtka zimowa", "woodoporna", 100 );
+        Product product2 = new Product("płaszcz", "damski, wełna", 150);
+        Group group = new Group("Ubrania");
+        group.getProductList().add(product1);
+        group.getProductList().add(product2);
+        product1.setGroup(group);
+        product2.setGroup(group);
+        //WHEN
+        groupRepository.save(group);
+        Long id = group.getGroupId();
+        //THEN
+        Assert.assertTrue(group.getProductList().size()>1);
+        //CLEAN-UP
+        try {
+            groupRepository.deleteById(id);
+        }catch(Exception e){
+            System.out.println("Clean-up process failed.");
+        }
     }
 
 }
