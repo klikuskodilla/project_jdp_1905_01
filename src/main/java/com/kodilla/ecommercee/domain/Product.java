@@ -53,7 +53,7 @@ public class Product {
     public List<Cart> getListOfCarts(){
         return listOfCarts;
     }
-    public void sertListofCart(Cart cart){
+    public void setListOfCarts(Cart cart){
          listOfCarts.add(cart);
     }
 
