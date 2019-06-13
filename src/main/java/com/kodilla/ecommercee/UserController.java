@@ -1,8 +1,9 @@
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.com.kodilla.ecommercee.domain.Dto.UsersDto;
+
+import com.kodilla.ecommercee.domain.Dto.UsersDto;
 import com.kodilla.ecommercee.mapper.UserMapper;
-import com.kodilla.ecommercee.service.DbService;
+import com.kodilla.ecommercee.service.DbUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,34 +17,34 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 public class UserController {
 
     @Autowired
-    private DbService dbService;
+    private DbUserService dbUserService;
 
     @Autowired
     private UserMapper customerMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "getUser")
     public List<UsersDto> getUser(){
-        return customerMapper.mapToUserDtoList(dbService.getAllCustomer());
+        return customerMapper.mapToUserDtoList(dbUserService.getAllUsers());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getUsers/{id}")
     public UsersDto getUser(@PathVariable Long id)throws UserNotFoundException{
-        return customerMapper.maptoUserDto(dbService.getCustomerById(id));
+        return customerMapper.maptoUserDto(dbUserService.getUsersById(id));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "addUser",  consumes = APPLICATION_JSON_VALUE)
     public void addUser(@RequestBody UsersDto customersDto){
-        dbService.saveCustomer(customerMapper.maptoUser(customersDto));
+        dbUserService.saveUsers(customerMapper.maptoUser(customersDto));
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/updateCustomer")
     public UsersDto updateUser(@RequestBody UsersDto customerDto){
-        return customerMapper.maptoUserDto(dbService.saveCustomer(customerMapper.maptoUser(customerDto)));
+        return customerMapper.maptoUserDto(dbUserService.saveUsers(customerMapper.maptoUser(customerDto)));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteUser/{id}")
     public void deleteUser(@PathVariable Long id){
-        dbService.deleteCustomer(id);
+        dbUserService.deleteUsers(id);
     }
 
 }
