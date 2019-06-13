@@ -43,15 +43,15 @@ public class Users {
     )
     private List<Order> orders = new ArrayList<>();
 
-    /*
+
     @OneToMany(
             targetEntity = Cart.class,
             mappedBy = "users",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Cart> orders = new ArrayList<>();
-*/
+    private List<Cart> carts = new ArrayList<>();
+
 
     public Users() {
     }
@@ -101,8 +101,17 @@ public class Users {
         return orders;
     }
 
+    public List<Cart> getCarts() {
+        return carts;
+    }
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
+    }
+
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+
 }
 
