@@ -41,6 +41,12 @@ public class Order {
     public Order() {
     }
 
+    public Order(@NotNull Double orderPrice, @NotNull Integer productsQuantity, LocalDate dateOfOrder) {
+        this.orderPrice = orderPrice;
+        this.productsQuantity = productsQuantity;
+        this.dateOfOrder = dateOfOrder;
+    }
+
     public Long getOrderId() {
         return orderId;
     }
@@ -57,19 +63,19 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public void setOrderPrice(Double orderPrice) {
-        this.orderPrice = orderPrice;
-    }
-
-    public void setProductsQuantity(Integer productsQuantity) {
-        this.productsQuantity = productsQuantity;
-    }
-
-    public void setDateOfOrder(LocalDate dateOfOrder) {
-        this.dateOfOrder = dateOfOrder;
-    }
-
     public void setUsers(Users users) {
         this.users = users;
+    }
+
+    public Double getOrderPrice() {
+        return orderPrice;
+    }
+
+    public Integer getProductsQuantity() {
+        return productsQuantity;
+    }
+
+    public List<Product> getProducts() {
+        return products;
     }
 }

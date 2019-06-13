@@ -85,9 +85,18 @@ public class Users {
         return accountStartDate;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     public List<Cart> getOrdersInsideTheCart(){
         return ordersInsideTheCart;
     }
+
     public void setOrdersInsideTheCart(Cart cart){
         ordersInsideTheCart.add(cart);
     }
