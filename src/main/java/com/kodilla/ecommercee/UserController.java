@@ -20,26 +20,26 @@ public class UserController {
     private DbUserService dbUserService;
 
     @Autowired
-    private UserMapper customerMapper;
+    private UserMapper userMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "getUser")
     public List<UsersDto> getUser(){
-        return customerMapper.mapToUserDtoList(dbUserService.getAllUsers());
+        return userMapper.mapToUserDtoList(dbUserService.getAllUsers());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getUsers/{id}")
     public UsersDto getUser(@PathVariable Long id)throws UserNotFoundException{
-        return customerMapper.maptoUserDto(dbUserService.getUsersById(id));
+        return userMapper.maptoUserDto(dbUserService.getUsersById(id));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "addUser",  consumes = APPLICATION_JSON_VALUE)
     public void addUser(@RequestBody UsersDto customersDto){
-        dbUserService.saveUsers(customerMapper.maptoUser(customersDto));
+        dbUserService.saveUsers(userMapper.maptoUser(customersDto));
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/updateCustomer")
     public UsersDto updateUser(@RequestBody UsersDto customerDto){
-        return customerMapper.maptoUserDto(dbUserService.saveUsers(customerMapper.maptoUser(customerDto)));
+        return userMapper.maptoUserDto(dbUserService.saveUsers(userMapper.maptoUser(customerDto)));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteUser/{id}")
