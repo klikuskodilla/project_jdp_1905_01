@@ -66,7 +66,7 @@ public class OrderRepositoryTestSuite {
             orderRepository.deleteById(order3.getOrderId());
             orderRepository.deleteById(order4.getOrderId());
         } catch (Exception e) {
-            System.out.println("Unable to clean up");
+            LOGGER.error("Unable to clean up.", e.getMessage(), e);
         }
     }
 
@@ -89,7 +89,7 @@ public class OrderRepositoryTestSuite {
             orderRepository.deleteById(order3.getOrderId());
             orderRepository.deleteById(order4.getOrderId());
         } catch (Exception e) {
-            System.out.println("Unable to clean up");
+            LOGGER.error("Unable to clean up.", e.getMessage(), e);
         }
     }
 
@@ -113,7 +113,7 @@ public class OrderRepositoryTestSuite {
     try {
         orderRepository.deleteById(orderId);
     } catch(Exception e) {
-        System.out.println("Unable to clean up");
+        LOGGER.error("Unable to clean up.", e.getMessage(), e);
     }
 }
 
@@ -150,7 +150,7 @@ public class OrderRepositoryTestSuite {
             userDao.deleteById(userId1);
             userDao.deleteById(userId2);
         } catch (Exception e) {
-            System.out.println("Unable to clean up");
+            LOGGER.error("Unable to clean up.", e.getMessage(), e);
         }
 }
 }
