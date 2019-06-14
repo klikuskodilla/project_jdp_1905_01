@@ -118,8 +118,9 @@ public class OrderRepositoryTestSuite {
 
     @Test
     public void testOrderDaoManyToOneWithUsers() {
-        //Given
-   user1.getOrders().add(order1);
+        //Give
+
+        user1.getOrders().add(order1);
    user1.getOrders().add(order2);
    user1.getOrders().add(order3);
    user1.getOrders().add(order4);
@@ -129,17 +130,17 @@ public class OrderRepositoryTestSuite {
         order3.setUsers(user1);
         order4.setUsers(user1);
         //When
-        userDao.save(user1);
-        userDao.save(user1);
+        orderRepository.save(order1);
+        orderRepository.save(order2);
+        orderRepository.save(order3);
+        orderRepository.save(order4);
         Long userId1 = user1.getId();
-        Long userId2 = user1.getId();
         Long orderId1 = order1.getOrderId();
         Long orderId2 = order2.getOrderId();
         Long orderId3 = order3.getOrderId();
         Long orderId4 = order4.getOrderId();
         //Then
         Assert.assertNotEquals(0.0, userId1);
-        Assert.assertNotEquals(0.0, userId2);
         Assert.assertNotEquals(0.0, orderId1);
         Assert.assertNotEquals(0.0, orderId2);
         Assert.assertNotEquals(0.0, orderId3);
@@ -147,7 +148,7 @@ public class OrderRepositoryTestSuite {
         //Clean up
         try {
             userDao.deleteById(userId1);
-            userDao.deleteById(userId2);
+
         } catch (Exception e) {
             LOGGER.error("Unable to clean up.", e.getMessage(), e);
         }
