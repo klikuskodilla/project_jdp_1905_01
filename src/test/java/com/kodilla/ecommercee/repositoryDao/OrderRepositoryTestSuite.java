@@ -36,7 +36,6 @@ public class OrderRepositoryTestSuite {
     private Product product2 = new Product("sweter", "bawełniany", 45);
 
     private Users user1 = new Users(1234L,"Magda", "Solety", "magda_solety@gmail.com", "Mazowiecka 13, Wrocław", LocalDate.of(2015, 6, 17));
-    private Users user2 = new Users(12345L, "Grzegorz", "Matola", "matolagrzegorz87@icloud.com", "Racławicka 10/15, Kraków", LocalDate.of(2017, 11, 15));
 
     @Before
     public void before() {
@@ -122,18 +121,18 @@ public class OrderRepositoryTestSuite {
         //Given
    user1.getOrders().add(order1);
    user1.getOrders().add(order2);
-   user2.getOrders().add(order3);
-   user2.getOrders().add(order4);
+   user1.getOrders().add(order3);
+   user1.getOrders().add(order4);
 
         order1.setUsers(user1);
         order2.setUsers(user1);
-        order3.setUsers(user2);
-        order4.setUsers(user2);
+        order3.setUsers(user1);
+        order4.setUsers(user1);
         //When
         userDao.save(user1);
-        userDao.save(user2);
+        userDao.save(user1);
         Long userId1 = user1.getId();
-        Long userId2 = user2.getId();
+        Long userId2 = user1.getId();
         Long orderId1 = order1.getOrderId();
         Long orderId2 = order2.getOrderId();
         Long orderId3 = order3.getOrderId();
