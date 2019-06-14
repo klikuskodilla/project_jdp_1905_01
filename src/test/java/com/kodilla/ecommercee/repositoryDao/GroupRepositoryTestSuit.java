@@ -60,7 +60,7 @@ public class GroupRepositoryTestSuit {
         //WHEN
         Optional<Group> groupFound = groupRepository.findById(group4Id);
         //THEN
-        Assert.assertNotEquals(group4, groupFound);
+        Assert.assertTrue(groupFound.isPresent());
         //CLEAN-UP
         try {
             groupRepository.deleteById(group1.getGroupId());
