@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -43,6 +45,8 @@ public class OrderRepositoryTestSuite {
         order3 = new Order(1.5, 3, LocalDate.of(2019, 6, 14));
         order4 = new Order(2.6, 6, LocalDate.of(2019, 6, 15));
     }
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderRepositoryTestSuite.class);
 
     @Test
     public void testOrderDaoSaveAndFindAllAndDeleteById() {
