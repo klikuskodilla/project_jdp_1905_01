@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,7 @@ public class OrderRepositoryTestSuite {
         //When
         Optional<Order> findOrder = orderRepository.findById(order3Id);
         //Then
-        Assert.assertTrue(findOrder.isPresent());
+        Assert.assertEquals(findOrder.get().getOrderId(), order3Id);
         //Clean up
         try {
             orderRepository.deleteById(order1.getOrderId());
@@ -119,10 +120,10 @@ public class OrderRepositoryTestSuite {
     }
 }
 
+    @Transactional
     @Test
     public void testOrderDaoManyToOneWithUsers() {
         //Give
-
         user1.getOrders().add(order1);
    user1.getOrders().add(order2);
    user1.getOrders().add(order3);
@@ -132,6 +133,7 @@ public class OrderRepositoryTestSuite {
         order2.setUsers(user1);
         order3.setUsers(user1);
         order4.setUsers(user1);
+
         //When
         orderRepository.save(order1);
         orderRepository.save(order2);
@@ -148,9 +150,13 @@ public class OrderRepositoryTestSuite {
         Assert.assertNotEquals(0.0, orderId2);
         Assert.assertNotEquals(0.0, orderId3);
         Assert.assertNotEquals(0.0, orderId4);
+
         //Clean up
         try {
-            userDao.deleteById(userId1);
+            orderRepository.deleteById(orderId1);
+            orderRepository.deleteById(orderId2);
+            orderRepository.deleteById(orderId3);
+            orderRepository.deleteById(orderId4);
 
         } catch (Exception e) {
             LOGGER.error("Unable to clean up.", e.getMessage(), e);
