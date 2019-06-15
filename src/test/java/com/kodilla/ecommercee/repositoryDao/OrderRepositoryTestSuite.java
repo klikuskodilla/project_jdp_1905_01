@@ -25,9 +25,6 @@ public class OrderRepositoryTestSuite {
     @Autowired
     private OrderRepository orderRepository;
 
-    @Autowired
-    private UserDao userDao;
-
     private Order order1;
     private Order order2;
     private Order order3;
