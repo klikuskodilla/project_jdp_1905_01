@@ -32,8 +32,8 @@ public class OrderRepositoryTestSuite {
     private Order order3;
     private Order order4;
 
-    private Product product1 = new Product("kalosze", "gumowe", 25);
-    private Product product2 = new Product("sweter", "bawełniany", 45);
+    private Product product1;
+    private Product product2;
 
     private Users user1 = new Users(1234L,"Magda", "Solety", "magda_solety@gmail.com", "Mazowiecka 13, Wrocław", LocalDate.of(2015, 6, 17));
 
@@ -43,6 +43,9 @@ public class OrderRepositoryTestSuite {
         order2 = new Order(3.0, 4, LocalDate.of(2019, 6, 13));
         order3 = new Order(1.5, 3, LocalDate.of(2019, 6, 14));
         order4 = new Order(2.6, 6, LocalDate.of(2019, 6, 15));
+
+        product1 = new Product("kalosze", "gumowe", 25);
+        product2 = new Product("sweter", "bawełniany", 45);
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderRepositoryTestSuite.class);
