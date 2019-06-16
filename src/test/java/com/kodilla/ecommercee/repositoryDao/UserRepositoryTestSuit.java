@@ -30,6 +30,7 @@ public class UserRepositoryTestSuit {
     private Order order1;
     private Order order2;
     private Order order3;
+    private static Long zero =0L;
 
     @Autowired
     private DbUserService dbUserService;
@@ -180,9 +181,9 @@ public class UserRepositoryTestSuit {
         Long cartId3 = cart3.getId();
 
         //Then
-        assertNotEquals(0.0, cartId1);
-        assertNotEquals(0.0, cartId2);
-        assertNotEquals(0.0, cartId3);
+        assertNotEquals(zero, cartId1);
+        assertNotEquals(zero, cartId2);
+        assertNotEquals(zero, cartId3);
 
         //CleanUp
         try {
