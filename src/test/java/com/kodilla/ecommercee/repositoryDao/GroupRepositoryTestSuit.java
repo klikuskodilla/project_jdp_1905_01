@@ -3,6 +3,7 @@ package com.kodilla.ecommercee.repositoryDao;
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Product;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,22 @@ public class GroupRepositoryTestSuit {
     @Autowired
     private GroupRepository groupRepository;
 
-    private Group group1 = new Group("Ubrania");
-    private Group group2 = new Group("Dodatki");
-    private Group group3 = new Group("Biżuteria");
-    private Group group4 = new Group("Obuwie");
+    private Group group1;
+    private Group group2;
+    private Group group3;
+    private Group group4;
+    private Product product1;
+    private Product product2;
 
-    private Product product1 = new Product("kurtka zimowa", "woodoporna", 100 );
-    private Product product2 = new Product("płaszcz", "damski, wełna", 150);
+    @Before
+    public void before() {
+        group1 = new Group("Ubrania");
+        group2 = new Group("Dodatki");
+        group3 = new Group("Biżuteria");
+        group4 = new Group("Obuwie");
+        product1 = new Product("kurtka zimowa", "woodoporna", 100);
+        product2 = new Product("płaszcz", "damski, wełna", 150);
+    }
 
     @Test
     public void testGroupDaoSaveAndFindAll(){
@@ -60,7 +70,7 @@ public class GroupRepositoryTestSuit {
         //WHEN
         Optional<Group> groupFound = groupRepository.findById(group4Id);
         //THEN
-        Assert.assertTrue(groupFound.isPresent());
+        Assert.assertTrue(groupFound.isPresent() && groupFound.get().getGroupId().equals(group4Id));
         //CLEAN-UP
         try {
             groupRepository.deleteById(group1.getGroupId());
@@ -84,11 +94,12 @@ public class GroupRepositoryTestSuit {
         Long groupId = group1.getGroupId();
         Long productId1 = product1.getId();
         Long productId2 = product2.getId();
+        Long nullId = 0L;
 
         //THEN
-        Assert.assertNotEquals(0.0, groupId);
-        Assert.assertNotEquals(0.0, productId1);
-        Assert.assertNotEquals(0.0, productId2);
+        Assert.assertNotEquals(nullId, groupId);
+        Assert.assertNotEquals(nullId, productId1);
+        Assert.assertNotEquals(nullId, productId2);
         //CLEAN-UP
         try {
             groupRepository.deleteById(groupId);
