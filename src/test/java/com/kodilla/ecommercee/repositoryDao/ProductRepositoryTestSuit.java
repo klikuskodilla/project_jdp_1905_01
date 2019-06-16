@@ -73,7 +73,7 @@ public class ProductRepositoryTestSuit {
         //WHEN
         Optional<Product> productFound = productRepository.findById(product2Id);
         //THEN
-        Assert.assertEquals(productFound.get().getId(), product2Id);
+        Assert.assertTrue(productFound.isPresent() && productFound.get().getId().equals(product2Id));
         //CLEAN-UP
         try{
             productRepository.deleteById(product1.getId());
