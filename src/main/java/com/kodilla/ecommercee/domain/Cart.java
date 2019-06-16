@@ -10,7 +10,6 @@ import java.util.List;
 
 public class Cart {
 
-
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,21 +30,21 @@ public class Cart {
             joinColumns = {@JoinColumn(name = "CART_ID",referencedColumnName = "CART_ID")},
             inverseJoinColumns = {@JoinColumn(name = "ID",referencedColumnName = "ID")})
     private List<Product> productsList = new ArrayList<>();
-
-
     public Cart(){
 
     }
     public Long getId(){
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
 
     public Order getOrder() {
         return order;
+    }
+    public void setOrder(Order order){
+        this.order = order;
     }
 
     public Users getUser() {
@@ -54,6 +53,7 @@ public class Cart {
     public void setUser(Users user) {
         this.user = user;
     }
+
     public List<Product> getProductsList(){
         return productsList;
     }
