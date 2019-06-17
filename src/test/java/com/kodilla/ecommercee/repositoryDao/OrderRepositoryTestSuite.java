@@ -33,7 +33,7 @@ public class OrderRepositoryTestSuite {
     private Product product1;
     private Product product2;
 
-    private Users user1 = new Users(1234L,"Magda", "Solety", "magda_solety@gmail.com", "Mazowiecka 13, Wrocław", LocalDate.of(2015, 6, 17));
+    private Users user1;
 
     @Before
     public void before() {
@@ -44,6 +44,8 @@ public class OrderRepositoryTestSuite {
 
         product1 = new Product("kalosze", "gumowe", 25);
         product2 = new Product("sweter", "bawełniany", 45);
+
+        user1 = new Users(1234L,"Magda", "Solety", "magda_solety@gmail.com", "Mazowiecka 13, Wrocław", LocalDate.of(2015, 6, 17));
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderRepositoryTestSuite.class);
@@ -105,10 +107,11 @@ public class OrderRepositoryTestSuite {
     Long orderId = order1.getOrderId();
     Long productId1 = product1.getId();
     Long productId2 = product2.getId();
+    Long nullId = 0L;
     //Then
-    Assert.assertNotEquals(0.0, orderId);
-    Assert.assertNotEquals(0.0, productId1);
-    Assert.assertNotEquals(0.0, productId2);
+    Assert.assertNotEquals(nullId, orderId);
+    Assert.assertNotEquals(nullId, productId1);
+    Assert.assertNotEquals(nullId, productId2);
     //Clean up
     try {
         orderRepository.deleteById(orderId);
@@ -141,12 +144,14 @@ public class OrderRepositoryTestSuite {
         Long orderId2 = order2.getOrderId();
         Long orderId3 = order3.getOrderId();
         Long orderId4 = order4.getOrderId();
+        Long nullId = 0L;
         //Then
-        Assert.assertNotEquals(0.0, userId1);
-        Assert.assertNotEquals(0.0, orderId1);
-        Assert.assertNotEquals(0.0, orderId2);
-        Assert.assertNotEquals(0.0, orderId3);
-        Assert.assertNotEquals(0.0, orderId4);
+        Assert.assertNotEquals(nullId, userId1);
+        Assert.assertNotEquals(nullId, orderId1);
+        Assert.assertNotEquals(nullId, orderId2);
+        Assert.assertNotEquals(nullId, orderId3);
+        Assert.assertNotEquals(nullId, orderId4);
+
 
         //Clean up
         try {
