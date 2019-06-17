@@ -47,12 +47,6 @@ public class Order {
     public Order() {
     }
 
-    public Order(@NotNull Double orderPrice, @NotNull Integer productsQuantity, LocalDate dateOfOrder) {
-        this.orderPrice = orderPrice;
-        this.productsQuantity = productsQuantity;
-        this.dateOfOrder = dateOfOrder;
-    }
-
     public Long getOrderId() {
         return orderId;
     }
@@ -79,10 +73,6 @@ public class Order {
 
     public Integer getProductsQuantity() {
         return productsQuantity;
-    }
-
-    public List<Product> getProducts() {
-        return products;
     }
 
     public List<Product> getProducts() {
