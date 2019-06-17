@@ -34,6 +34,12 @@ public class Order {
     )
     private List<Product> products = new ArrayList<>();
 
+    public Order(@NotNull Double orderPrice, @NotNull Integer productsQuantity, LocalDate dateOfOrder) {
+        this.orderPrice = orderPrice;
+        this.productsQuantity = productsQuantity;
+        this.dateOfOrder = dateOfOrder;
+    }
+
     @ManyToOne
     @JoinColumn(name = "USERS_ID")
     private Users users;
@@ -77,5 +83,13 @@ public class Order {
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
