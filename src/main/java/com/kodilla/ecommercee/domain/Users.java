@@ -101,16 +101,6 @@ public class Users {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
-    public List<Cart> getOrdersInsideTheCart(){
-        return ordersInsideTheCart;
-    }
-
-    public void setOrdersInsideTheCart(Cart cart){
-        ordersInsideTheCart.add(cart);
     public List<Cart> getCarts() {
         return carts;
     }
@@ -121,5 +111,6 @@ public class Users {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
-}
 
+
+}
