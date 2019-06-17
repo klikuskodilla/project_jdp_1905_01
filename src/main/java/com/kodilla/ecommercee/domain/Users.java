@@ -34,6 +34,7 @@ public class Users {
     @Column(name = "account_start_date")
     private LocalDate accountStartDate;
 
+
     @OneToMany(
             targetEntity = Order.class,
             mappedBy = "users",
@@ -42,18 +43,29 @@ public class Users {
     )
     private List<Order> orders = new ArrayList<>();
 
+
     @OneToMany(
             targetEntity = Cart.class,
-            mappedBy = "user",
+            mappedBy = "users",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Cart> ordersInsideTheCart = new ArrayList<>();
+    private List<Cart> carts = new ArrayList<>();
+
 
     public Users() {
     }
 
     public Users(@NotNull Long id, @NotNull String name, @NotNull String surname, @NotNull String eMailAddress, @NotNull String userAddress, LocalDate accountStartDate) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.eMailAddress = eMailAddress;
+        this.userAddress = userAddress;
+        this.accountStartDate = accountStartDate;
+    }
+
+    public Users(@NotNull String name, @NotNull String surname, @NotNull String eMailAddress, @NotNull String userAddress, LocalDate accountStartDate) {
         this.name = name;
         this.surname = surname;
         this.eMailAddress = eMailAddress;
@@ -85,12 +97,21 @@ public class Users {
         return accountStartDate;
     }
 
-    public List<Cart> getOrdersInsideTheCart(){
-        return ordersInsideTheCart;
+    public List<Order> getOrders() {
+        return orders;
     }
-    public void setOrdersInsideTheCart(Cart cart){
-        ordersInsideTheCart.add(cart);
+
+    public List<Cart> getCarts() {
+        return carts;
     }
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
 
 }
 
