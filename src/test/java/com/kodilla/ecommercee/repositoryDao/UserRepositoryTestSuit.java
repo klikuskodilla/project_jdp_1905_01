@@ -145,9 +145,9 @@ public class UserRepositoryTestSuit {
         Long orderId3 = order3.getOrderId();
 
         //Then
-        assertNotEquals(0.0, orderId1);
-        assertNotEquals(0.0, orderId2);
-        assertNotEquals(0.0, orderId3);
+        assertNotEquals(zero, orderId1);
+        assertNotEquals(zero, orderId2);
+        assertNotEquals(zero, orderId3);
 
         //CleanUp
         try {
