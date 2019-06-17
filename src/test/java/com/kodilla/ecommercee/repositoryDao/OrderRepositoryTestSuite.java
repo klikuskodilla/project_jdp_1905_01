@@ -51,7 +51,7 @@ public class OrderRepositoryTestSuite {
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderRepositoryTestSuite.class);
 
     @Test
-    public void testOrderDaoSaveAndFindAllAndDeleteById() {
+    public void testOrderDaoSaveAndFindAll() {
         //Given
         orderRepository.save(order1);
         orderRepository.save(order2);
@@ -73,7 +73,7 @@ public class OrderRepositoryTestSuite {
     }
 
     @Test
-    public void testOrderDaoSaveAndFindByIdAndDeleteById() {
+    public void testOrderDaoSaveAndFindById() {
         //Given
         orderRepository.save(order1);
         orderRepository.save(order2);
@@ -163,5 +163,22 @@ public class OrderRepositoryTestSuite {
         } catch (Exception e) {
             LOGGER.error("Unable to clean up.", e.getMessage(), e);
         }
+}
+
+@Test
+public void testOrderDaoDeleteById() {
+        //Given
+    orderRepository.save(order1);
+    orderRepository.save(order2);
+    Long orderId1 = order1.getOrderId();
+    Long orderId2 = order2.getOrderId();
+    Long nullId = 0L;
+    //When
+    orderRepository.deleteById(orderId1);
+    orderRepository.deleteById(orderId2);
+
+    //Then
+    Assert.assertEquals(nullId, orderId1);
+    Assert.assertEquals(nullId, orderId2);
 }
 }
