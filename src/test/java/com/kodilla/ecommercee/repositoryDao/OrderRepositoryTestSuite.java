@@ -172,13 +172,20 @@ public void testOrderDaoDeleteById() {
     orderRepository.save(order2);
     Long orderId1 = order1.getOrderId();
     Long orderId2 = order2.getOrderId();
-    Long nullId = 0L;
     //When
-    orderRepository.deleteById(orderId1);
     orderRepository.deleteById(orderId2);
 
     //Then
-    Assert.assertEquals(nullId, orderId1);
-    Assert.assertEquals(nullId, orderId2);
+    Assert.assertTrue(orderRepository.existsById(orderId1));
+    Assert.assertFalse(orderRepository.existsById(orderId2));
+
+    //Clean up
+    try {
+        orderRepository.deleteById(orderId1);
+        orderRepository.deleteById(orderId2);
+
+    } catch (Exception e) {
+        LOGGER.error("Unable to clean up.", e.getMessage(), e);
+    }
 }
 }
