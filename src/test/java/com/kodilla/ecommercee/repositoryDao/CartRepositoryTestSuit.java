@@ -27,12 +27,12 @@ public class CartRepositoryTestSuit {
     private CartRepository cartRepository;
     @Autowired
     private UserDao userDao;
-    @Autowired
-    private ProductRepository productRepository;
 
-    private Cart cart1 = new Cart();
-    private Cart cart2 = new Cart();
-    private Cart cart3 = new Cart();
+    private static Long zeroLong = 0L;
+
+    private Cart cart1;
+    private Cart cart2;
+    private Cart cart3;
 
     private Users user1;
     private Users user2;
@@ -42,9 +42,9 @@ public class CartRepositoryTestSuit {
     private Product product2;
     private Product product3;
 
-    private List<Product> listOfProducts1 = new ArrayList<>();
-    private List<Product> listOfProducts2 = new ArrayList<>();
-    private List<Product> listOfProducts3 = new ArrayList<>();
+    private List<Product> listOfProducts1;
+    private List<Product> listOfProducts2;
+    private List<Product> listOfProducts3;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CartRepositoryTestSuit.class);
 
@@ -58,17 +58,17 @@ public class CartRepositoryTestSuit {
         product2 = new Product("Telefon","bezprzewodowy",40);
         product3 = new Product("Pokrowiec","przezroczysty",15);
 
-        listOfProducts1.add(product1);
-        listOfProducts1.add(product2);
-        listOfProducts2.add(product3);
-        listOfProducts2.add(product1);
-        listOfProducts3.add(product2);
-        listOfProducts3.add(product3);
+        listOfProducts1 = new ArrayList<>();
+        listOfProducts2 = new ArrayList<>();
+        listOfProducts3 = new ArrayList<>();
 
+        cart1 = new Cart();
         cart1.setProductsList(listOfProducts1);
         cart1.setUser(user1);
+        cart2 = new Cart();
         cart2.setProductsList(listOfProducts2);
         cart2.setUser(user2);
+        cart3 = new Cart();
         cart3.setProductsList(listOfProducts3);
         cart3.setUser(user3);
     }
@@ -170,22 +170,9 @@ public class CartRepositoryTestSuit {
         //Given
         user1.setOrdersInsideTheCart(cart1);
         user1.setOrdersInsideTheCart(cart2);
-        cart1.setUser(user1);
-        cart2.setUser(user1);
         //When
-        userDao.save(user1);
-        cartRepository.save(cart1);
-        cartRepository.save(cart2);
         //Then
         Assert.assertEquals(2,user1.getOrdersInsideTheCart().size());
-        //Clean Up
-        try{
-            cartRepository.deleteById(cart1.getId());
-            cartRepository.deleteById(cart2.getId());
-            userDao.deleteById(user1.getId());
-        }catch (Exception e){
-            LOGGER.error("Clean-up process failed.", e.getMessage(), e);
-        }
     }
 
     @Test
@@ -207,8 +194,9 @@ public class CartRepositoryTestSuit {
         cartRepository.save(cart2);
         Long product2Id = product2.getId();
         //Then
-        Assert.assertNotEquals(0.0,product1Id);
-        Assert.assertNotEquals(0.0,product2Id);
+        Assert.assertNotEquals(zeroLong,product1Id);
+        Assert.assertNotEquals(zeroLong,product2Id);
+
         //Clean Up
         try{
             userDao.deleteById(user1.getId());
