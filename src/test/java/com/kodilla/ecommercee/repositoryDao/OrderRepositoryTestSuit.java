@@ -181,7 +181,6 @@ public class OrderRepositoryTestSuit {
         //Clean up
         try {
             orderRepository.deleteById(orderId1);
-            orderRepository.deleteById(orderId2);
 
         } catch (Exception e) {
             LOGGER.error("Unable to clean up.", e.getMessage(), e);
