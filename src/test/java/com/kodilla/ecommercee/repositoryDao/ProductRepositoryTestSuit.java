@@ -5,6 +5,7 @@ import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.Product;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -26,10 +27,18 @@ public class ProductRepositoryTestSuit {
     @Autowired
     private GroupRepository groupRepository;
 
-    private Product product1 = new Product("kurtka zimowa", "woodoporna", 100 );
-    private Product product2 = new Product("płaszcz", "damski, wełna", 150);
-    private Product product3 = new Product("buty", "sandały skórzane", 100);
-    private Product product4 = new Product("rękawiczki", "rozmiar 7.5", 50);
+    private Product product1;
+    private Product product2;
+    private Product product3;
+    private Product product4;
+
+    @Before
+    public void before() {
+        product1 = new Product("kurtka zimowa", "woodoporna", 100);
+        product2 = new Product("płaszcz", "damski, wełna", 150);
+        product3 = new Product("buty", "sandały skórzane", 100);
+        product4 = new Product("rękawiczki", "rozmiar 7.5", 50);
+    }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductRepositoryTestSuit.class);
 
@@ -64,7 +73,7 @@ public class ProductRepositoryTestSuit {
         //WHEN
         Optional<Product> productFound = productRepository.findById(product2Id);
         //THEN
-        Assert.assertTrue(productFound.isPresent());
+        Assert.assertTrue(productFound.isPresent() && productFound.get().getId().equals(product2Id));
         //CLEAN-UP
         try{
             productRepository.deleteById(product1.getId());
@@ -137,9 +146,10 @@ public class ProductRepositoryTestSuit {
         productRepository.save(product2);
         Long order1Id = order1.getOrderId();
         Long order2Id = order2.getOrderId();
+        Long nullId = 0L;
         //THEN
-        Assert.assertNotEquals(0.0, order1Id);
-        Assert.assertNotEquals(0.0, order2Id);
+        Assert.assertNotEquals(nullId, order1Id);
+        Assert.assertNotEquals(nullId, order2Id);
         //CLEAN-UP
         try{
             productRepository.deleteById(product1.getId());
@@ -167,9 +177,10 @@ public class ProductRepositoryTestSuit {
         productRepository.save(product2);
         Long cart1Id = cart1.getId();
         Long cart2Id = cart2.getId();
+        Long nullId = 0L;
         //THEN
-        Assert.assertNotEquals(0.0, cart1Id);
-        Assert.assertNotEquals(0.0, cart2Id);
+        Assert.assertNotEquals(nullId, cart1Id);
+        Assert.assertNotEquals(nullId, cart2Id);
         //CLEAN-UP
         try{
             productRepository.deleteById(product1.getId());
