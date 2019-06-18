@@ -73,7 +73,7 @@ public class ProductRepositoryTestSuit {
         //WHEN
         Optional<Product> productFound = productRepository.findById(product2Id);
         //THEN
-        Assert.assertTrue(productFound.isPresent());
+        Assert.assertTrue(productFound.isPresent() && productFound.get().getId().equals(product2Id));
         //CLEAN-UP
         try{
             productRepository.deleteById(product1.getId());
@@ -146,9 +146,10 @@ public class ProductRepositoryTestSuit {
         productRepository.save(product2);
         Long order1Id = order1.getOrderId();
         Long order2Id = order2.getOrderId();
+        Long nullId = 0L;
         //THEN
-        Assert.assertNotEquals(0.0, order1Id);
-        Assert.assertNotEquals(0.0, order2Id);
+        Assert.assertNotEquals(nullId, order1Id);
+        Assert.assertNotEquals(nullId, order2Id);
         //CLEAN-UP
         try{
             productRepository.deleteById(product1.getId());
@@ -176,9 +177,10 @@ public class ProductRepositoryTestSuit {
         productRepository.save(product2);
         Long cart1Id = cart1.getId();
         Long cart2Id = cart2.getId();
+        Long nullId = 0L;
         //THEN
-        Assert.assertNotEquals(0.0, cart1Id);
-        Assert.assertNotEquals(0.0, cart2Id);
+        Assert.assertNotEquals(nullId, cart1Id);
+        Assert.assertNotEquals(nullId, cart2Id);
         //CLEAN-UP
         try{
             productRepository.deleteById(product1.getId());

@@ -7,7 +7,6 @@ import java.util.List;
 
 @Entity
 @Table(name="CART")
-
 public class Cart {
 
     @Id
@@ -21,8 +20,8 @@ public class Cart {
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private Users user;
+    @JoinColumn(name = "USERS_ID")
+    private Users users;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -31,8 +30,23 @@ public class Cart {
             inverseJoinColumns = {@JoinColumn(name = "ID",referencedColumnName = "ID")})
     private List<Product> productsList = new ArrayList<>();
     public Cart(){
-
     }
+
+    public Cart(@NotNull Order order, @NotNull Users users) {
+        this.order = order;
+        this.users = users;
+    }
+
+    public Cart(@NotNull Long id, @NotNull Order order, @NotNull Users users) {
+        this.id = id;
+        this.order = order;
+        this.users = users;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     public Long getId(){
         return id;
     }
@@ -47,11 +61,11 @@ public class Cart {
         this.order = order;
     }
 
-    public Users getUser() {
-        return user;
+    public Users getUsers() {
+        return users;
     }
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public List<Product> getProductsList(){
