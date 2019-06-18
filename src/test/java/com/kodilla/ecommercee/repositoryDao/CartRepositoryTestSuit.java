@@ -141,6 +141,9 @@ public class CartRepositoryTestSuit {
         Assert.assertFalse(cartList.contains(cart2));
         //Clean Up
         try{
+            userDao.deleteById(user1.getId());
+            userDao.deleteById(user2.getId());
+            userDao.deleteById(user3.getId());
             cartRepository.deleteById(cart1.getId());
             cartRepository.deleteById(cart3.getId());
         }catch (Exception e){
