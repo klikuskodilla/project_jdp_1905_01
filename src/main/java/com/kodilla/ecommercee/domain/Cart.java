@@ -43,9 +43,7 @@ public class Cart {
         this.users = users;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+
 
     public Long getId(){
         return id;

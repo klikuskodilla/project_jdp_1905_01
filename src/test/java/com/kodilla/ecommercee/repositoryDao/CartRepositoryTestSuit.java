@@ -25,8 +25,6 @@ import java.util.Optional;
 public class CartRepositoryTestSuit {
     @Autowired
     private CartRepository cartRepository;
-    @Autowired
-    private UserDao userDao;
 
     private static Long zeroLong = 0L;
 
@@ -35,8 +33,6 @@ public class CartRepositoryTestSuit {
     private Cart cart3;
 
     private Users user1;
-    private Users user2;
-    private Users user3;
 
     private Product product1;
     private Product product2;
@@ -50,10 +46,6 @@ public class CartRepositoryTestSuit {
 
     @Before
     public void beforeTest(){
-        user1 = new Users(1L,"Czesiek","Wladkowski","xxx@xxx","wroclawksa", LocalDate.of(2000,04,30));
-        user2 = new Users(2L,"Wlodek","Ciotkowski","xxx@sss","ulica",LocalDate.of(2005,04,30));
-        user3 = new Users(3L,"Rychu","Stanislaw","ccccc@cccc","Zamkowa",LocalDate.of(2019,05,12));
-
         product1 = new Product("Glosniki","czarne",23);
         product2 = new Product("Telefon","bezprzewodowy",40);
         product3 = new Product("Pokrowiec","przezroczysty",15);
@@ -64,21 +56,15 @@ public class CartRepositoryTestSuit {
 
         cart1 = new Cart();
         cart1.setProductsList(listOfProducts1);
-        cart1.setUser(user1);
         cart2 = new Cart();
         cart2.setProductsList(listOfProducts2);
-        cart2.setUser(user2);
         cart3 = new Cart();
         cart3.setProductsList(listOfProducts3);
-        cart3.setUser(user3);
     }
     @Transactional
     @Test
     public void testCartDaoSaveAndFindAll(){
         //Given
-        userDao.save(user1);
-        userDao.save(user2);
-        userDao.save(user3);
         cartRepository.save(cart1);
         cartRepository.save(cart2);
         cartRepository.save(cart3);
@@ -91,13 +77,9 @@ public class CartRepositoryTestSuit {
         Assert.assertNotEquals(null,cartRepository.findById(cart3.getId()));
         //Clean Up
         try{
-            userDao.deleteById(user1.getId());
-            userDao.deleteById(user2.getId());
-            userDao.deleteById(user3.getId());
             cartRepository.deleteById(cart1.getId());
             cartRepository.deleteById(cart2.getId());
             cartRepository.deleteById(cart3.getId());
-
         }catch (Exception e){
             LOGGER.error("Clean-up process failed.", e.getMessage(), e);
         }
@@ -127,9 +109,6 @@ public class CartRepositoryTestSuit {
     @Test
     public void testCartDaoDeleteById(){
         //Given
-        userDao.save(user1);
-        userDao.save(user2);
-        userDao.save(user3);
         cartRepository.save(cart1);
         cartRepository.save(cart2);
         cartRepository.save(cart3);
@@ -141,9 +120,6 @@ public class CartRepositoryTestSuit {
         Assert.assertFalse(cartList.contains(cart2));
         //Clean Up
         try{
-            userDao.deleteById(user1.getId());
-            userDao.deleteById(user2.getId());
-            userDao.deleteById(user3.getId());
             cartRepository.deleteById(cart1.getId());
             cartRepository.deleteById(cart3.getId());
         }catch (Exception e){
@@ -171,13 +147,13 @@ public class CartRepositoryTestSuit {
     @Test
     public void testCartManyToOneUser(){
         //Given
-        user1.setOrdersInsideTheCart(cart1);
-        user1.setOrdersInsideTheCart(cart2);
+        user1 = new Users();
+        user1.getCarts().add(cart1);
+        user1.getCarts().add(cart2);
         //When
         //Then
-        Assert.assertEquals(2,user1.getOrdersInsideTheCart().size());
+        Assert.assertEquals(2,user1.getCarts().size());
     }
-
     @Test
     public void testCartManyToManyProducts(){
         //Given
@@ -190,8 +166,6 @@ public class CartRepositoryTestSuit {
         cart2.getProductsList().add(product1);
         cart2.getProductsList().add(product2);
         //When
-        userDao.save(user1);
-        userDao.save(user2);
         cartRepository.save(cart1);
         Long product1Id = product1.getId();
         cartRepository.save(cart2);
@@ -199,17 +173,12 @@ public class CartRepositoryTestSuit {
         //Then
         Assert.assertNotEquals(zeroLong,product1Id);
         Assert.assertNotEquals(zeroLong,product2Id);
-
         //Clean Up
         try{
-            userDao.deleteById(user1.getId());
-            userDao.deleteById(user2.getId());
             cartRepository.deleteById(cart1.getId());
             cartRepository.deleteById(cart2.getId());
         }catch (Exception e){
             LOGGER.error("Clean-up process failed.", e.getMessage(), e);
         }
-
     }
-
 }
