@@ -26,6 +26,7 @@ public class GroupRepositoryTestSuit {
     private Group group4;
     private Product product1;
     private Product product2;
+    private static Long zeroLong = 0L;
 
     @Before
     public void before() {
@@ -94,12 +95,10 @@ public class GroupRepositoryTestSuit {
         Long groupId = group1.getGroupId();
         Long productId1 = product1.getId();
         Long productId2 = product2.getId();
-        Long nullId = 0L;
-
         //THEN
-        Assert.assertNotEquals(nullId, groupId);
-        Assert.assertNotEquals(nullId, productId1);
-        Assert.assertNotEquals(nullId, productId2);
+        Assert.assertNotEquals(zeroLong, groupId);
+        Assert.assertNotEquals(zeroLong, productId1);
+        Assert.assertNotEquals(zeroLong, productId2);
         //CLEAN-UP
         try {
             groupRepository.deleteById(groupId);
