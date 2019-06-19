@@ -2,11 +2,10 @@ package com.kodilla.ecommercee;
 
 
 import com.kodilla.ecommercee.domain.Dto.UsersDto;
-import com.kodilla.ecommercee.mapper.UserMapper;
-import com.kodilla.ecommercee.service.DbUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
@@ -16,35 +15,27 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @RequestMapping("/v1/user")
 public class UserController {
 
-    @Autowired
-    private DbUserService dbUserService;
-
-    @Autowired
-    private UserMapper userMapper;
-
     @RequestMapping(method = RequestMethod.GET, value = "getUser")
     public List<UsersDto> getUser(){
-        return userMapper.mapToUserDtoList(dbUserService.getAllUsers());
+        return new ArrayList<>();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getUsers/{id}")
-    public UsersDto getUser(@PathVariable Long id)throws UserNotFoundException{
-        return userMapper.maptoUserDto(dbUserService.getUsersById(id));
+    public UsersDto getUser( Long id){
+        return new UsersDto(1L, "Tomek", "Zdzich", "Zdzich@op.pl","Zdzich Sztrase", LocalDate.now());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "addUser",  consumes = APPLICATION_JSON_VALUE)
-    public void addUser(@RequestBody UsersDto customersDto){
-        dbUserService.saveUsers(userMapper.maptoUser(customersDto));
+    public void addUser( UsersDto customersDto){
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/updateCustomer")
-    public UsersDto updateUser(@RequestBody UsersDto customerDto){
-        return userMapper.maptoUserDto(dbUserService.saveUsers(userMapper.maptoUser(customerDto)));
+    public UsersDto updateUser(UsersDto customerDto){
+        return new UsersDto(1L, "Tomek", "Zdzich", "Zdzich@op.pl","Zdzich Sztrase", LocalDate.now());
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteUser/{id}")
-    public void deleteUser(@PathVariable Long id){
-        dbUserService.deleteUsers(id);
+    public void deleteUser( Long id){
     }
 
 }

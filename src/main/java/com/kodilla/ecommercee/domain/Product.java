@@ -72,4 +72,16 @@ public class Product {
     public Group getGroup() {
         return group;
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }
