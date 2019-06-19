@@ -26,6 +26,9 @@ public class CartRepositoryTestSuit {
     @Autowired
     private CartRepository cartRepository;
 
+    @Autowired
+    private  UserDao userDao;
+
     private static Long zeroLong = 0L;
 
     private Cart cart1;
@@ -95,7 +98,7 @@ public class CartRepositoryTestSuit {
         //When
         Optional<Cart> cartFound = cartRepository.findById(IdCart1);
         //Then
-        Assert.assertEquals(cart1.getId(),cartFound.get().getId());
+        Assert.assertEquals(IdCart1,cartFound.get().getId());
         //Clean Up
         try{
             cartRepository.deleteById(cart1.getId());
@@ -135,7 +138,7 @@ public class CartRepositoryTestSuit {
         cart1.setOrder(order);
         //When
         cartRepository.save(cart1);
-        Assert.assertNotEquals(0,cartRepository.findById(cart1.getOrder().getOrderId()));
+        Assert.assertNotEquals(zeroLong,cartRepository.findById(cart1.getOrder().getOrderId()));
         //Clean Up
         try{
             cartRepository.deleteById(cart1.getId());
@@ -150,9 +153,22 @@ public class CartRepositoryTestSuit {
         user1 = new Users();
         user1.getCarts().add(cart1);
         user1.getCarts().add(cart2);
+        cart1.setUsers(user1);
+        cart2.setUsers(user1);
         //When
+        userDao.save(user1);
+        cartRepository.save(cart1);
+        cartRepository.save(cart2);
         //Then
         Assert.assertEquals(2,user1.getCarts().size());
+        //Clean up
+        try{
+            userDao.deleteById(user1.getId());
+            cartRepository.deleteById(cart1.getId());
+            cartRepository.deleteById(cart2.getId());
+        }catch (Exception e){
+            LOGGER.error("Clean-up process failed.", e.getMessage(), e);
+        }
     }
     @Test
     public void testCartManyToManyProducts(){
