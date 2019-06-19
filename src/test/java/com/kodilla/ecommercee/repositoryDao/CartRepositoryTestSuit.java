@@ -75,9 +75,6 @@ public class CartRepositoryTestSuit {
         List<Cart> listOfCarts = cartRepository.findAll();
         //Then
         Assert.assertEquals(3,listOfCarts.size());
-        Assert.assertNotEquals(null,cartRepository.findById(cart1.getId()));
-        Assert.assertNotEquals(null,cartRepository.findById(cart2.getId()));
-        Assert.assertNotEquals(null,cartRepository.findById(cart3.getId()));
         //Clean Up
         try{
             cartRepository.deleteById(cart1.getId());
@@ -138,7 +135,9 @@ public class CartRepositoryTestSuit {
         cart1.setOrder(order);
         //When
         cartRepository.save(cart1);
-        Assert.assertNotEquals(zeroLong,cartRepository.findById(cart1.getOrder().getOrderId()));
+        Optional<Cart> orderId = cartRepository.findById(cart1.getOrder().getOrderId());
+        //Then
+        Assert.assertNotEquals(zeroLong,orderId);
         //Clean Up
         try{
             cartRepository.deleteById(cart1.getId());
@@ -159,8 +158,9 @@ public class CartRepositoryTestSuit {
         userDao.save(user1);
         cartRepository.save(cart1);
         cartRepository.save(cart2);
+        Optional<Users> userCheckCartList = userDao.findById(user1.getId());
         //Then
-        Assert.assertEquals(2,user1.getCarts().size());
+        Assert.assertEquals(2,userCheckCartList.get().getCarts().size());
         //Clean up
         try{
             userDao.deleteById(user1.getId());
