@@ -64,68 +64,6 @@ public class CartRepositoryTestSuit {
         cart3 = new Cart();
         cart3.setProductsList(listOfProducts3);
     }
-    @Transactional
-    @Test
-    public void testCartDaoSaveAndFindAll(){
-        //Given
-        cartRepository.save(cart1);
-        cartRepository.save(cart2);
-        cartRepository.save(cart3);
-        //When
-        List<Cart> listOfCarts = cartRepository.findAll();
-        //Then
-        Assert.assertEquals(3,listOfCarts.size());
-        //Clean Up
-        try{
-            cartRepository.deleteById(cart1.getId());
-            cartRepository.deleteById(cart2.getId());
-            cartRepository.deleteById(cart3.getId());
-        }catch (Exception e){
-            LOGGER.error("Clean-up process failed.", e.getMessage(), e);
-        }
-    }
-    @Transactional
-    @Test
-    public void testCartDaoSaveAndFindById(){
-        //Given
-        cartRepository.save(cart1);
-        cartRepository.save(cart2);
-        cartRepository.save(cart3);
-        Long IdCart1 = cart1.getId();
-        //When
-        Optional<Cart> cartFound = cartRepository.findById(IdCart1);
-        //Then
-        Assert.assertEquals(IdCart1,cartFound.get().getId());
-        //Clean Up
-        try{
-            cartRepository.deleteById(cart1.getId());
-            cartRepository.deleteById(cart2.getId());
-            cartRepository.deleteById(cart3.getId());
-        }catch (Exception e){
-            LOGGER.error("Clean-up process failed.", e.getMessage(), e);
-        }
-    }
-    @Transactional
-    @Test
-    public void testCartDaoDeleteById(){
-        //Given
-        cartRepository.save(cart1);
-        cartRepository.save(cart2);
-        cartRepository.save(cart3);
-        Long cart2Id = cart2.getId();
-        //When
-        cartRepository.deleteById(cart2Id);
-        List<Cart> cartList = cartRepository.findAll();
-        //Then
-        Assert.assertFalse(cartList.contains(cart2));
-        //Clean Up
-        try{
-            cartRepository.deleteById(cart1.getId());
-            cartRepository.deleteById(cart3.getId());
-        }catch (Exception e){
-            LOGGER.error("Clean-up process failed.", e.getMessage(), e);
-        }
-    }
 
     @Transactional
     @Test
