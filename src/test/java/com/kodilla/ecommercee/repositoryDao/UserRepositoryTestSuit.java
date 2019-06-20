@@ -25,16 +25,11 @@ public class UserRepositoryTestSuit {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserRepositoryTestSuit.class);
 
     private Users users1;
-    //private Users users2;
-    //private Users users3;
 
     private Order order1;
     private Order order2;
     private Order order3;
     private static Long zero =0L;
-
-    //@Autowired
-    //private DbUserService dbUserService;
 
     @Autowired
     private UserDao userDao;
@@ -52,85 +47,6 @@ public class UserRepositoryTestSuit {
         order2 = new Order(100.0, 3,LocalDate.now());
         order3 = new Order(23.0, 1,LocalDate.now());
     }
-
-    /*
-    @Test
-    public void testGetAllUsers() {
-
-        //Given
-        userDao.save(users1);
-        userDao.save(users2);
-        userDao.save(users3);
-
-        //When
-        List<Users> usersDbList = dbUserService.getAllUsers();
-
-        //Then
-        assertEquals(3, usersDbList.size());
-
-        //CleanUp
-        userDao.deleteById(users1.getId());
-        userDao.deleteById(users2.getId());
-        userDao.deleteById(users3.getId());
-    }
-
-    @Test
-    public void testGetUsersById() {
-
-        //Given
-        userDao.save(users1);
-        userDao.save(users2);
-        userDao.save(users3);
-        Long id = users2.getId();
-
-        //When
-        Users usersDb = dbUserService.getUsersById(id);
-
-        //Then
-        assertEquals("User2", usersDb.getName());
-
-        //CleanUp
-        userDao.deleteById(users1.getId());
-        userDao.deleteById(users2.getId());
-        userDao.deleteById(users3.getId());
-    }
-
-    @Test
-    public void testSaveUsers() {
-
-        //Given
-
-        //When
-        dbUserService.saveUsers(users1);
-        dbUserService.saveUsers(users2);
-        dbUserService.saveUsers(users3);
-
-        //Then
-        assertEquals(3, dbUserService.getAllUsers().size());
-
-        //CleanUp
-        userDao.deleteById(users1.getId());
-        userDao.deleteById(users2.getId());
-        userDao.deleteById(users3.getId());
-    }
-
-    @Test
-    public void testDeleteUsers() {
-
-        //Given
-        dbUserService.saveUsers(users1);
-        dbUserService.saveUsers(users2);
-        dbUserService.saveUsers(users3);
-
-        //When
-        dbUserService.deleteUsers(users1.getId());
-        dbUserService.deleteUsers(users2.getId());
-        dbUserService.deleteUsers(users3.getId());
-
-        //Then
-        assertEquals(0, dbUserService.getAllUsers().size());
-    }
-    */
 
     @Test
     public void testSaveOneToManyOrders(){
@@ -158,7 +74,6 @@ public class UserRepositoryTestSuit {
         } catch (Exception e) {
             LOGGER.error("Failed to process ", e.getMessage(),e);
         }
-
     }
 
     @Test
@@ -195,7 +110,5 @@ public class UserRepositoryTestSuit {
         } catch (Exception e) {
             LOGGER.error("Failed to process ", e.getMessage(),e);
         }
-
     }
-
 }

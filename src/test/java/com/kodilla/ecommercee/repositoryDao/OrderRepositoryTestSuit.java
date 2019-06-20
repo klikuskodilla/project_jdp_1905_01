@@ -47,53 +47,6 @@ public class OrderRepositoryTestSuit {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderRepositoryTestSuit.class);
 
-    /*
-    @Test
-    public void testOrderDaoSaveAndFindAll() {
-        //Given
-        orderRepository.save(order1);
-        orderRepository.save(order2);
-        orderRepository.save(order3);
-        orderRepository.save(order4);
-        //When
-        List<Order> listOfOrders = orderRepository.findAll();
-        //Then
-        Assert.assertEquals(4, listOfOrders.size());
-        //Clean up
-        try {
-            orderRepository.deleteById(order1.getOrderId());
-            orderRepository.deleteById(order2.getOrderId());
-            orderRepository.deleteById(order3.getOrderId());
-            orderRepository.deleteById(order4.getOrderId());
-        } catch (Exception e) {
-            LOGGER.error("Unable to clean up.", e.getMessage(), e);
-        }
-    }
-
-    @Test
-    public void testOrderDaoSaveAndFindById() {
-        //Given
-        orderRepository.save(order1);
-        orderRepository.save(order2);
-        orderRepository.save(order3);
-        orderRepository.save(order4);
-        Long order3Id = order3.getOrderId();
-        //When
-        Optional<Order> findOrder = orderRepository.findById(order3Id);
-        //Then
-        Assert.assertEquals(findOrder.get().getOrderId(), order3Id);
-        //Clean up
-        try {
-            orderRepository.deleteById(order1.getOrderId());
-            orderRepository.deleteById(order2.getOrderId());
-            orderRepository.deleteById(order3.getOrderId());
-            orderRepository.deleteById(order4.getOrderId());
-        } catch (Exception e) {
-            LOGGER.error("Unable to clean up.", e.getMessage(), e);
-        }
-    }
-    */
-
     @Test
     public void testOrderDaoManyToManyWithProduct() {
         //Given
@@ -163,29 +116,4 @@ public class OrderRepositoryTestSuit {
             LOGGER.error("Unable to clean up.", e.getMessage(), e);
         }
     }
-
-    /*
-    @Test
-    public void testOrderDaoDeleteById() {
-        //Given
-        orderRepository.save(order1);
-        orderRepository.save(order2);
-        Long orderId1 = order1.getOrderId();
-        Long orderId2 = order2.getOrderId();
-        //When
-        orderRepository.deleteById(orderId2);
-
-        //Then
-        Assert.assertTrue(orderRepository.existsById(orderId1));
-        Assert.assertFalse(orderRepository.existsById(orderId2));
-
-        //Clean up
-        try {
-            orderRepository.deleteById(orderId1);
-
-        } catch (Exception e) {
-            LOGGER.error("Unable to clean up.", e.getMessage(), e);
-        }
-    }
-    */
 }
