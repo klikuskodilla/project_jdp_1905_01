@@ -14,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-import java.util.Optional;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductRepositoryTestSuit {
@@ -29,80 +26,14 @@ public class ProductRepositoryTestSuit {
 
     private Product product1;
     private Product product2;
-    private Product product3;
-    private Product product4;
 
     @Before
     public void before() {
         product1 = new Product("kurtka zimowa", "woodoporna", 100);
         product2 = new Product("płaszcz", "damski, wełna", 150);
-        product3 = new Product("buty", "sandały skórzane", 100);
-        product4 = new Product("rękawiczki", "rozmiar 7.5", 50);
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductRepositoryTestSuit.class);
-
-    @Test
-    public void testProductDaoSaveAndFindAll(){
-        //GIVEN
-        productRepository.save(product1);
-        productRepository.save(product2);
-        productRepository.save(product3);
-        productRepository.save(product4);
-        //WHEN
-        List<Product> listOfProducts = productRepository.findAll();
-        //THEN
-        Assert.assertEquals(4, listOfProducts.size());
-        //CLEAN-UP
-        try{
-            productRepository.deleteById(product1.getId());
-            productRepository.deleteById(product2.getId());
-            productRepository.deleteById(product3.getId());
-            productRepository.deleteById(product4.getId());
-        }catch(Exception e){
-            LOGGER.error("Clean-up process failed.", e.getMessage(), e);
-        }
-    }
-
-    @Test
-    public void testProductDaoSaveAndFindById(){
-        //GIVEN
-        productRepository.save(product1);
-        productRepository.save(product2);
-        Long product2Id= product2.getId();
-        //WHEN
-        Optional<Product> productFound = productRepository.findById(product2Id);
-        //THEN
-        Assert.assertTrue(productFound.isPresent() && productFound.get().getId().equals(product2Id));
-        //CLEAN-UP
-        try{
-            productRepository.deleteById(product1.getId());
-            productRepository.deleteById(product2.getId());
-        }catch(Exception e){
-            LOGGER.error("Clean-up process failed.", e.getMessage(), e);
-        }
-    }
-
-    @Test
-    public void testProductDaoDeleteById() {
-        //GIVEN
-        productRepository.save(product1);
-        productRepository.save(product2);
-        productRepository.save(product3);
-        Long product2Id= product2.getId();
-        List<Product> listOfProducts = productRepository.findAll();
-        //WHEN
-        productRepository.deleteById(product2Id);
-        //THEN
-        Assert.assertFalse(listOfProducts.contains(product2));
-        //CLEAN-UP
-        try{
-            productRepository.deleteById(product1.getId());
-            productRepository.deleteById(product3.getId());
-        }catch(Exception e){
-            LOGGER.error("Clean-up process failed.", e.getMessage(), e);
-        }
-    }
 
     @Test
     public void testProductDaoManyToOneGroup(){
@@ -190,5 +121,4 @@ public class ProductRepositoryTestSuit {
             LOGGER.error("Clean-up process failed.", e.getMessage(), e);
         }
     }
-
 }
