@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-import java.util.Optional;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GroupRepositoryTestSuit {
@@ -21,9 +18,11 @@ public class GroupRepositoryTestSuit {
     private GroupRepository groupRepository;
 
     private Group group1;
+    /*
     private Group group2;
     private Group group3;
     private Group group4;
+    */
     private Product product1;
     private Product product2;
     private static Long zeroLong = 0L;
@@ -31,13 +30,16 @@ public class GroupRepositoryTestSuit {
     @Before
     public void before() {
         group1 = new Group("Ubrania");
+        /*
         group2 = new Group("Dodatki");
         group3 = new Group("Biżuteria");
         group4 = new Group("Obuwie");
+        */
         product1 = new Product("kurtka zimowa", "woodoporna", 100);
         product2 = new Product("płaszcz", "damski, wełna", 150);
     }
 
+    /*
     @Test
     public void testGroupDaoSaveAndFindAll(){
         //GIVEN
@@ -82,6 +84,7 @@ public class GroupRepositoryTestSuit {
             System.out.println("Clean-up process failed.");
         }
     }
+    */
 
     @Test
     public void testGroupDaoOneToManyWithProduct(){

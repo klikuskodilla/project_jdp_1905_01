@@ -14,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-import java.util.Optional;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductRepositoryTestSuit {
@@ -29,19 +26,24 @@ public class ProductRepositoryTestSuit {
 
     private Product product1;
     private Product product2;
+    /*
     private Product product3;
     private Product product4;
+    */
 
     @Before
     public void before() {
         product1 = new Product("kurtka zimowa", "woodoporna", 100);
         product2 = new Product("płaszcz", "damski, wełna", 150);
+        /*
         product3 = new Product("buty", "sandały skórzane", 100);
         product4 = new Product("rękawiczki", "rozmiar 7.5", 50);
+        */
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductRepositoryTestSuit.class);
 
+    /*
     @Test
     public void testProductDaoSaveAndFindAll(){
         //GIVEN
@@ -103,6 +105,7 @@ public class ProductRepositoryTestSuit {
             LOGGER.error("Clean-up process failed.", e.getMessage(), e);
         }
     }
+    */
 
     @Test
     public void testProductDaoManyToOneGroup(){

@@ -25,15 +25,16 @@ public class UserRepositoryTestSuit {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserRepositoryTestSuit.class);
 
     private Users users1;
-    private Users users2;
-    private Users users3;
+    //private Users users2;
+    //private Users users3;
+
     private Order order1;
     private Order order2;
     private Order order3;
     private static Long zero =0L;
 
-    @Autowired
-    private DbUserService dbUserService;
+    //@Autowired
+    //private DbUserService dbUserService;
 
     @Autowired
     private UserDao userDao;
@@ -44,14 +45,15 @@ public class UserRepositoryTestSuit {
     @Before
     public void before(){
         users1 = new Users("User1","Zdzich1", "Zdzich1@op.pl","Ulica Zdzicha 1", LocalDate.now());
-        users2 = new Users("User2","Zdzich2", "Zdzich2@op.pl","Ulica Zdzicha 2", LocalDate.now());
-        users3 = new Users("User3","Zdzich3", "Zdzich3@op.pl","Ulica Zdzicha 3", LocalDate.now());
+        //users2 = new Users("User2","Zdzich2", "Zdzich2@op.pl","Ulica Zdzicha 2", LocalDate.now());
+        //users3 = new Users("User3","Zdzich3", "Zdzich3@op.pl","Ulica Zdzicha 3", LocalDate.now());
 
         order1 = new Order(123.0, 2,LocalDate.now());
         order2 = new Order(100.0, 3,LocalDate.now());
         order3 = new Order(23.0, 1,LocalDate.now());
     }
 
+    /*
     @Test
     public void testGetAllUsers() {
 
@@ -128,6 +130,7 @@ public class UserRepositoryTestSuit {
         //Then
         assertEquals(0, dbUserService.getAllUsers().size());
     }
+    */
 
     @Test
     public void testSaveOneToManyOrders(){
@@ -151,9 +154,6 @@ public class UserRepositoryTestSuit {
 
         //CleanUp
         try {
-            userDao.deleteById(orderId1);
-            userDao.deleteById(orderId2);
-            userDao.deleteById(orderId3);
             userDao.deleteById(users1.getId());
         } catch (Exception e) {
             LOGGER.error("Failed to process ", e.getMessage(),e);

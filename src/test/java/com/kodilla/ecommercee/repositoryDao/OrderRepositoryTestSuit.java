@@ -15,8 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -49,6 +47,7 @@ public class OrderRepositoryTestSuit {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderRepositoryTestSuit.class);
 
+    /*
     @Test
     public void testOrderDaoSaveAndFindAll() {
         //Given
@@ -93,6 +92,7 @@ public class OrderRepositoryTestSuit {
             LOGGER.error("Unable to clean up.", e.getMessage(), e);
         }
     }
+    */
 
     @Test
     public void testOrderDaoManyToManyWithProduct() {
@@ -164,6 +164,7 @@ public class OrderRepositoryTestSuit {
         }
     }
 
+    /*
     @Test
     public void testOrderDaoDeleteById() {
         //Given
@@ -186,4 +187,5 @@ public class OrderRepositoryTestSuit {
             LOGGER.error("Unable to clean up.", e.getMessage(), e);
         }
     }
+    */
 }
