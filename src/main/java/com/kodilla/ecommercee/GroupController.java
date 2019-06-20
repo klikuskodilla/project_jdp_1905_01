@@ -13,24 +13,23 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/group")
 public class GroupController {
-    GroupRepository groupRepository;
 
     @RequestMapping(method = RequestMethod.GET, value = "getGroups")
-    public List<Group> getGroups() {
+    public List<GroupDto> getGroups() {
         return new ArrayList<>();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createGroup")
-    public void createGroup(Group group) {
+    public void createGroup(GroupDto groupDto) {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getGroup")
-    public Group getGroup(Long groupId) throws GroupNotFoundException {
-        return new Group("GroupController");
+    public GroupDto getGroup(Long groupId) throws GroupNotFoundException {
+        return new GroupDto("GroupController");
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateGroup")
-    public Group updateGroup(Group group) {
-        return new Group("UpdatedGroupController");
+    public GroupDto updateGroup(GroupDto groupDto) {
+        return new GroupDto("UpdatedGroupController");
     }
 }
