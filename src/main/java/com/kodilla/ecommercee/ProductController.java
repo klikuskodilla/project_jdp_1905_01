@@ -24,7 +24,6 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.POST, value = "createProduct", consumes = APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProductDto productDto){
-
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateProduct")
@@ -34,6 +33,5 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteProduct")
     public void deleteProduct(@RequestParam Long productId){
-
     }
 }
