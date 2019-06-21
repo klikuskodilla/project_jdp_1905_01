@@ -1,8 +1,6 @@
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.domain.Group;
-import com.kodilla.ecommercee.repositoryDao.GroupRepository;
-import javafx.concurrent.Task;
+import com.kodilla.ecommercee.domain.Dto.GroupDto;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
