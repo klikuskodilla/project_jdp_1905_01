@@ -73,9 +73,8 @@ public class CartRepositoryTestSuit {
         cart1.setOrder(order);
         //When
         cartRepository.save(cart1);
-        Optional<Cart> orderId = cartRepository.findById(cart1.getOrder().getOrderId());
-        //Then
-        Assert.assertNotEquals(zeroLong,orderId);
+               //Then
+        Assert.assertNotEquals(zeroLong,cart1.getOrder().getOrderId());
         //Clean Up
         try{
             cartRepository.deleteById(cart1.getId());
