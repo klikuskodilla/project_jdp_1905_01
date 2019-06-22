@@ -1,9 +1,7 @@
 package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.Dto.GroupDto;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +16,16 @@ public class GroupController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createGroup")
-    public void createGroup(GroupDto groupDto) {
+    public void createGroup(@RequestBody GroupDto groupDto) {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getGroup")
-    public GroupDto getGroup(Long groupId) throws GroupNotFoundException {
+    public GroupDto getGroup(@RequestParam Long groupId) throws GroupNotFoundException {
         return new GroupDto("GroupController");
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateGroup")
-    public GroupDto updateGroup(GroupDto groupDto) {
+    public GroupDto updateGroup(@RequestBody GroupDto groupDto) {
         return new GroupDto("UpdatedGroupController");
     }
 }
