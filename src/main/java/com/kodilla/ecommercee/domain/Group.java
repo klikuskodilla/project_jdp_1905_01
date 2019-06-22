@@ -18,7 +18,7 @@ public class Group {
     @Column(name="name")
     private String name;
 
-    @OneToMany(targetEntity = Product.class, mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Product.class, mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Product> productList = new ArrayList<>();
 
     public Group() {
