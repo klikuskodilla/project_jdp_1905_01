@@ -15,27 +15,27 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @RequestMapping("/v1/user")
 public class UserController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "getUser")
+    @RequestMapping(method = RequestMethod.GET, value = "/getUser")
     public List<UsersDto> getUser(){
         return new ArrayList<>();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getUsers/{id}")
-    public UsersDto getUser( Long id){
+    public UsersDto getUser( @PathVariable Long id){
         return new UsersDto(1L, "Tomek", "Zdzich", "Zdzich@op.pl","Zdzich Sztrase", LocalDate.now());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "addUser",  consumes = APPLICATION_JSON_VALUE)
-    public void addUser( UsersDto customersDto){
+    public void addUser( @RequestBody UsersDto customersDto){
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/updateCustomer")
-    public UsersDto updateUser(UsersDto customerDto){
+    public UsersDto updateUser(@RequestBody UsersDto customerDto){
         return new UsersDto(1L, "Tomek", "Zdzich", "Zdzich@op.pl","Zdzich Sztrase", LocalDate.now());
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteUser/{id}")
-    public void deleteUser( Long id){
+    public void deleteUser( @PathVariable Long id){
     }
 
 }
