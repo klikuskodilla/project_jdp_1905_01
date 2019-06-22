@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getUsers/{id}")
-    public UsersDto getUser( @PathVariable Long id){
+    public UsersDto getUser( @PathVariable Long id) throws UserNotFoundException {
         return new UsersDto(1L, "Tomek", "Zdzich", "Zdzich@op.pl","Zdzich Sztrase", LocalDate.now());
     }
 
