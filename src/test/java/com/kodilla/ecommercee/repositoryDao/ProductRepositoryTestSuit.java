@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductRepositoryTestSuit {
@@ -47,8 +49,9 @@ public class ProductRepositoryTestSuit {
         groupRepository.save(group);
         productRepository.save(product1);
         productRepository.save(product2);
+        Optional<Group> groupFound = groupRepository.findById(group.getGroupId());
         //THEN
-        Assert.assertEquals(2, group.getProductList().size());
+        Assert.assertTrue(groupFound.isPresent() && groupFound.get().getProductList().size()==2);
         //CLEAN-UP
         try{
             productRepository.deleteById(product1.getId());
