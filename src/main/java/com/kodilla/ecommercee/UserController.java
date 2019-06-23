@@ -1,9 +1,6 @@
 package com.kodilla.ecommercee;
 
 
-public class UserController {
-}
-
 import com.kodilla.ecommercee.domain.Dto.UsersDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +14,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @CrossOrigin("*")
 @RequestMapping("/v1/user")
 public class UserController {
-  
+
     @RequestMapping(method = RequestMethod.GET, value = "/getUser")
     public List<UsersDto> getUser(){
         return new ArrayList<>();
@@ -40,4 +37,5 @@ public class UserController {
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteUser/{id}")
     public void deleteUser( @PathVariable Long id){
     }
+
 }
