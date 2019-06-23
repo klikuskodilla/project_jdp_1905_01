@@ -43,4 +43,7 @@ public class UsersDto {
         this.userAddress = userAddress;
         this.accountStartDate = accountStartDate;
     }
+
+    public UsersDto() {
+    }
 }
